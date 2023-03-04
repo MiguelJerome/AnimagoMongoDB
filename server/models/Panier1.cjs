@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const panierSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
-  purchaseQuantity: { type: String, required: true },
+  purchaseQuantity: { type: Number, required: true },
   categorie: { type: String, required: true },
   stock: { type: Number, required: true },
   price: { type: Number, required: true },
@@ -10,8 +10,8 @@ const panierSchema = new mongoose.Schema({
   description: { type: String, required: true },
   src: { type: String, required: true },
   alt: { type: String, required: true },
-  width: { type: String, required: true },
-  height: { type: String, required: true },
+  width: { type: Number, required: true },
+  height: { type: Number, required: true },
 });
 
 let Panier;

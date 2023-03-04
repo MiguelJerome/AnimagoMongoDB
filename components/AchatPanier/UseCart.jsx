@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import panier from '/models/panier.jsx';
 
-export const useCart = () => {
+export const useCart = (panier) => {
   const [cart, setCart] = useState(panier);
 
   const initCart = () => {

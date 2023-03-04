@@ -1,7 +1,7 @@
 [
   {
     "_id": 100,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "aquatique",
     "stock": 5,
     "price": 90.99,
@@ -14,7 +14,7 @@
   },
   {
     "_id": 101,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "oiseaux",
     "stock": 6,
     "price": 76.99,
@@ -27,7 +27,7 @@
   },
   {
     "_id": 102,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "chat",
     "stock": 7,
     "price": 15.99,
@@ -40,7 +40,7 @@
   },
   {
     "_id": 103,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "chat",
     "stock": 8,
     "price": 19.99,
@@ -53,7 +53,7 @@
   },
   {
     "_id": 104,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "chat",
     "stock": 9,
     "price": 25.99,
@@ -66,7 +66,7 @@
   },
   {
     "_id": 105,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "chien",
     "stock": 10,
     "price": 8.99,
@@ -79,7 +79,7 @@
   },
   {
     "_id": 106,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "chien",
     "stock": 11,
     "price": 33.99,
@@ -92,7 +92,7 @@
   },
   {
     "_id": 107,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "oiseaux",
     "stock": 12,
     "price": 79.99,
@@ -105,7 +105,7 @@
   },
   {
     "_id": 108,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "chien",
     "stock": 13,
     "price": 29.99,
@@ -118,7 +118,7 @@
   },
   {
     "_id": 109,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "petit animaux",
     "stock": 14,
     "price": 56.99,
@@ -131,7 +131,7 @@
   },
   {
     "_id": 110,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "reptile",
     "stock": 15,
     "price": 70.99,
@@ -144,7 +144,7 @@
   },
   {
     "_id": 111,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "reptile",
     "stock": 16,
     "price": 62.99,
@@ -157,7 +157,7 @@
   },
   {
     "_id": 112,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "reptile",
     "stock": 17,
     "price": 38.99,
@@ -170,7 +170,7 @@
   },
   {
     "_id": 113,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "petit animaux",
     "stock": 18,
     "price": 30.99,
@@ -183,7 +183,7 @@
   },
   {
     "_id": 114,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "oiseaux",
     "stock": 19,
     "price": 288.99,
@@ -196,7 +196,7 @@
   },
   {
     "_id": 115,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "aquatique",
     "stock": 20,
     "price": 243.99,
@@ -209,7 +209,7 @@
   },
   {
     "_id": 116,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "aquatique",
     "stock": 25,
     "price": 11.99,
@@ -222,7 +222,7 @@
   },
   {
     "_id": 117,
-    "purchaseQuantity": "quantiteExemple",
+    "purchaseQuantity": 0,
     "categorie": "petit animaux",
     "stock": 50,
     "price": 11.99,
