@@ -6,6 +6,7 @@ export default function ProduitListe({
   showPanierPanneau,
   toggler,
   categorie,
+  paniers,
 }) {
   return (
     <div className={styles.container}>
@@ -13,6 +14,7 @@ export default function ProduitListe({
         showPanierPanneau={showPanierPanneau}
         toggler={toggler}
         categorie={categorie}
+        paniers={paniers}
       />
     </div>
   );

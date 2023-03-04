@@ -8,6 +8,7 @@ export default function ProduitParCategorie({
   toggler,
   categorie,
   cartProps,
+  paniers,
 }) {
   // const [
   //   cart = [],
@@ -18,6 +19,7 @@ export default function ProduitParCategorie({
   //   getPurchaseQuantity,
   //   getRemainingStock
   // ] = Array.isArray(cartProps) ? cartProps : [];
+  console.log('ProduitParCategorie', JSON.stringify(paniers));
   const [
     cart,
     initCart,
@@ -26,12 +28,12 @@ export default function ProduitParCategorie({
     setCart,
     getPurchaseQuantity,
     getRemainingStock,
-  ] = useCart();
-  /*
+  ] = useCart(paniers);
+
   useEffect(() => {
     initCart();
-  }, []);
-  */
+  }, [paniers]);
+
   const filteredProduits = cart
     ? categorie
       ? cart.filter(
