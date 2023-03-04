@@ -1,11 +1,37 @@
-[{
+[
+  {
     "courriel": "johndoe@example.com",
     "mot_passe": "password123",
     "prenom": "John",
     "nom": "Doe",
-    "commandes": [
-        "61b284ecae9fc50cc0f33e8c"
-    ]
-}
+    "commandes": ["61b284ecae9fc50cc0f33e8c"]
+  },
+  {
+    "prenom": "Bob",
+    "nom": "Gratton",
+    "courriel": "test@gmail.com",
+    "mot_passe": "test",
+    "commandes": ["61b284ecae9fc50cc0f33e8d"]
+  },
+  {
+    "prenom": "Miguel",
+    "nom": "Jerome",
+    "courriel": "Miguel@gmail.com",
+    "mot_passe": "test",
+    "commandes": ["61b284ecae9fc50cc0f33e8e"]
+  },
+  {
+    "prenom": "Simon",
+    "nom": "Cloutier",
+    "courriel": "Simon@gmail.com",
+    "mot_passe": "test",
+    "commandes": ["61b284ecae9fc50cc0f33e8f"]
+  },
+  {
+    "prenom": "Huy",
+    "nom": "Tran",
+    "courriel": "Huy@gmail.com",
+    "mot_passe": "test",
+    "commandes": ["61b284ecae9fc50cc0f33e8a"]
+  }
 ]
-

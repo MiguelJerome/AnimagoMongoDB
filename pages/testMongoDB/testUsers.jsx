@@ -20,7 +20,7 @@ export default function Home({ users }) {
               <p>Password:{mot_passe}</p>
               <p>Prenom: {prenom}</p>
               <p>Nom: {nom}</p>
-              <p>Commandes: {commandes}</p>
+              <p>Commandes: {JSON.stringify(commandes)}</p>
             </div>
           )
         )}
@@ -36,6 +36,7 @@ export async function getServerSideProps() {
   const usersStringified = users.map((user) => ({
     ...user,
     _id: user._id.toString(),
+    commandes: JSON.stringify(user.commandes),
   }));
   return { props: { users: usersStringified } };
 }
