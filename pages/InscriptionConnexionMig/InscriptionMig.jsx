@@ -10,7 +10,8 @@ import { useRouter } from 'next/router';
 //import Auth from '../utils/auth';
 //import { ADD_USER } from '../utils/mutations';
 
-export default function Inscription(usersServer) {
+export default function Inscription({ usersServer }) {
+  const [users, setUsers] = useState(usersServer || []);
   console.log(
     'Inscription reading user server side props:',
     JSON.stringify(usersServer)
