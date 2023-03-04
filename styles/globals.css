@@ -1,0 +1,64 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+main {
+  flex: 1;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Helvetica';
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  position: static;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 95px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}

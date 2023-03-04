@@ -1,0 +1,11 @@
+[{
+    "courriel": "johndoe@example.com",
+    "mot_passe": "password123",
+    "prenom": "John",
+    "nom": "Doe",
+    "commandes": [
+        "61b284ecae9fc50cc0f33e8c"
+    ]
+}
+]
+

@@ -1,0 +1,188 @@
+.gallerie {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: stretch;
+  flex-direction: row;
+  height: auto;
+  width: 1000px;
+}
+
+.gallerie img {
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  height: fit-content;
+  min-height: 250px;
+  width: auto;
+  background-color: rgb(255, 220, 182);
+  border-radius: 2rem;
+}
+
+.containerBouttonAchat {
+  display: grid;
+  font-size: large;
+  line-height: 1.8;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  margin: 3rem 0.1rem;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+}
+
+.button {
+  background-color: #ff5dc9;
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-weight: 800;
+  border-radius: 50px;
+  padding: 0.9rem 0.2rem;
+  font-size: 15px;
+  margin: 0 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dashBoardButton {
+  display: flex;
+  background-color: rgba(95, 95, 95, 0.61);
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-weight: 800;
+  border-radius: 1rem;
+  padding: 10px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  flex-direction: column;
+  align-content: stretch;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.dashBoardButton:hover {
+  cursor: default;
+  color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.imageInfo {
+  display: flex;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: stretch;
+  justify-content: center;
+  margin: 1rem 1rem;
+}
+
+.imageId {
+  font-size: 1.3em;
+  color: #000000;
+  margin: 0;
+}
+.imageName {
+  font-size: 1.3em;
+  color: rgb(254, 59, 0);
+  margin: 0.5rem 0;
+}
+
+.imagePrice {
+  font-size: 1.3em;
+  color: rgb(128, 128, 128);
+  margin: 0.5rem 0;
+}
+
+.imageStock {
+  font-size: 1.2em;
+  color: black;
+  margin: 0.5rem 0;
+}
+
+.stock {
+  font-size: 2rem;
+  display: inline-block;
+  padding: 0.71rem 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-radius: 10rem;
+  color: #212529;
+  background-color: rgb(240, 230, 140);
+}
+@media (max-width: 900px) {
+  .gallerie {
+    width: 500px;
+  }
+  .imageName {
+    font-size: 1.5rem;
+  }
+  .imagePrice {
+    font-size: 1.5rem;
+  }
+  .stock {
+    font-size: 1.5rem;
+    padding: 0.5rem 1.2rem;
+  }
+  .imageStock {
+    font-size: 1.5rem;
+  }
+}
+
+.panierItemQuantite {
+  font-size: 1.5rem;
+  display: inline-block;
+  padding: 0.71rem 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-radius: 9rem;
+  color: #212529;
+  background-color: #ffc107;
+}

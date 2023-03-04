@@ -1,0 +1,38 @@
+.contenuExpedition {
+  display: flex;
+  flex-direction: column;
+  line-height: 2;
+  margin: auto;
+}
+
+.titreExpedition {
+  font-size: 35px;
+  color: rgb(254, 59, 0);
+  font-weight: bold;
+  align-items: flex-start;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.soustitreExpedition {
+  font-size: x-large;
+  font-weight: bold;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.bodyExpedition {
+  margin-left: 15rem;
+  margin-right: 15rem;
+  margin-top: 1rem;
+  margin-bottom: 8rem;
+  width: 450px;
+}
+@media (max-width: 700px) {
+  .titreExpedition {
+    font-size: 2rem;
+  }
+  .bodyExpedition {
+    margin: auto;
+    margin-left: 1rem;
+  }
+}

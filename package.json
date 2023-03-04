@@ -1,0 +1,44 @@
+{
+  "name": "animago",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed": "node ./server/seeders/seeds.cjs"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@napi-rs/snappy-win32-x64-msvc": "^7.2.2",
+    "@next/font": "13.1.2",
+    "bcrypt": "^5.1.0",
+    "dns": "^0.2.2",
+    "eslint": "8.32.0",
+    "eslint-config-next": "13.1.2",
+    "mongodb": "^5.1.0",
+    "mongodb-client-encryption": "^2.6.0",
+    "mongoose": "^7.0.0",
+    "next": "13.1.2",
+    "next-auth": "^4.19.2",
+    "normalize.css": "^8.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-toastify": "^9.1.1"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "net": false,
+    "tls": false,
+    "dgram": false,
+    "child_process": false
+  },
+  "devDependencies": {
+    "buffer-loader": "^0.1.0",
+    "node-loader": "^2.0.0"
+  }
+}

@@ -1,0 +1,56 @@
+.menuCategorie {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1rem;
+}
+
+.menuCategorieList {
+  margin: 1rem;
+  margin-top: 4rem;
+  height: fit-content;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menuCategorieList:hover {
+  color: rgb(248, 110, 60);
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.h2Categorie {
+  font-weight: 500;
+  margin: 1rem 0;
+  line-height: 1.25;
+}
+
+.button {
+  background-color: rgb(254, 59, 0);
+  color: black;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: bolder;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 550px) {
+  .h2Categorie {
+    font-size: larger;
+  }
+  .button {
+    font-size: 10px;
+  }
+}

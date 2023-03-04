@@ -1,0 +1,39 @@
+.titreHistoire {
+  font-size: 35px;
+  color: rgb(254, 59, 0);
+  font-weight: bold;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.histoire {
+  font-size: large;
+  line-height: 1.8;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  gap: 5rem;
+  min-width: 30rem;
+  font-size: 1rem;
+  margin: 1rem;
+}
+
+.bodyHistoire {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.imgResize {
+  height: auto;
+  max-width: 100%;
+  min-width: 30rem;
+  margin: auto;
+}
+@media (max-width: 900px) {
+  .titreHistoire {
+    font-size: 2rem;
+    margin: 1rem;
+  }
+}
