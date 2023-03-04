@@ -1,6 +1,7 @@
 import { Inter } from '@next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 import styles from '/styles/Inscription.module.css';
+import { getUsers } from '/server/config/mongo/users';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -9,7 +10,11 @@ import { useRouter } from 'next/router';
 //import Auth from '../utils/auth';
 //import { ADD_USER } from '../utils/mutations';
 
-export default function Inscription() {
+export default function Inscription(usersServer) {
+  console.log(
+    'Inscription reading user server side props:',
+    JSON.stringify(usersServer)
+  );
   const router = useRouter();
   //Reference: https://www.geeksforgeeks.org/how-to-log-out-user-from-app-using-reactjs/
   const [lastName, setLastName] = useState('');
@@ -190,4 +195,16 @@ export default function Inscription() {
       </main>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const { users } = await getUsers();
+  if (!users) throw new Error('Failed to fetch users');
+  // Convert the _id property of each user to a string
+  const usersStringified = users.map((user) => ({
+    ...user,
+    _id: user._id.toString(),
+    commandes: JSON.stringify(user.commandes),
+  }));
+  return { props: { usersServer: usersStringified } };
 }

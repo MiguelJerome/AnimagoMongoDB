@@ -1,6 +1,7 @@
 import { Inter } from '@next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 import styles from '/styles/Connexion.module.css';
+import { getUsers } from '/server/config/mongo/users';
 
 import { useRouter } from 'next/router';
 
@@ -9,7 +10,11 @@ import React, { useState, useEffect } from 'react';
 //import Auth from '../utils/auth';
 //import { ADD_USER } from '../utils/mutations';
 
-export default function Connexion(props) {
+export default function Connexion(usersServer) {
+  console.log(
+    'Connection reading user server side props:',
+    JSON.stringify(usersServer)
+  );
   const router = useRouter();
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -169,4 +174,16 @@ export default function Connexion(props) {
       </main>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const { users } = await getUsers();
+  if (!users) throw new Error('Failed to fetch users');
+  // Convert the _id property of each user to a string
+  const usersStringified = users.map((user) => ({
+    ...user,
+    _id: user._id.toString(),
+    commandes: JSON.stringify(user.commandes),
+  }));
+  return { props: { usersServer: usersStringified } };
 }
