@@ -12,14 +12,14 @@ export default function Home({ users }) {
     <>
       <div className={styles.gallerie}>
         {usersJSON.map(
-          ({ _id, courriel, mot_passe, prenom, nom, commandes }) => (
+          ({ _id, email, password, firstName, lastName, commandes }) => (
             <div key={_id} className={styles.card}>
               <p>User</p>
               <p>#{_id}</p>
-              <p>Email :{courriel}</p>
-              <p>Password:{mot_passe}</p>
-              <p>Prenom: {prenom}</p>
-              <p>Nom: {nom}</p>
+              <p>Email :{email}</p>
+              <p>Password:{password}</p>
+              <p>Prenom: {firstName}</p>
+              <p>Nom: {lastName}</p>
               <p>Commandes: {JSON.stringify(commandes)}</p>
             </div>
           )
