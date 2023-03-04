@@ -1,37 +1,37 @@
 [
   {
-    "courriel": "johndoe@example.com",
-    "mot_passe": "password123",
-    "prenom": "John",
-    "nom": "Doe",
+    "email": "johndoe@example.com",
+    "password": "password123",
+    "firstName": "John",
+    "lastName": "Doe",
     "commandes": ["61b284ecae9fc50cc0f33e8c"]
   },
   {
-    "prenom": "Bob",
-    "nom": "Gratton",
-    "courriel": "test@gmail.com",
-    "mot_passe": "test",
+    "firstName": "Bob",
+    "lastName": "Gratton",
+    "email": "test@gmail.com",
+    "password": "test",
     "commandes": ["61b284ecae9fc50cc0f33e8d"]
   },
   {
-    "prenom": "Miguel",
-    "nom": "Jerome",
-    "courriel": "Miguel@gmail.com",
-    "mot_passe": "test",
+    "firstName": "Miguel",
+    "lastName": "Jerome",
+    "email": "Miguel@gmail.com",
+    "password": "test",
     "commandes": ["61b284ecae9fc50cc0f33e8e"]
   },
   {
-    "prenom": "Simon",
-    "nom": "Cloutier",
-    "courriel": "Simon@gmail.com",
-    "mot_passe": "test",
+    "firstName": "Simon",
+    "lastName": "Cloutier",
+    "email": "Simon@gmail.com",
+    "password": "test",
     "commandes": ["61b284ecae9fc50cc0f33e8f"]
   },
   {
-    "prenom": "Huy",
-    "nom": "Tran",
-    "courriel": "Huy@gmail.com",
-    "mot_passe": "test",
+    "firstName": "Huy",
+    "lastName": "Tran",
+    "email": "Huy@gmail.com",
+    "password": "test",
     "commandes": ["61b284ecae9fc50cc0f33e8a"]
   }
 ]
