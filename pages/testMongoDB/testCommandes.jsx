@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCommandes } from '/server/config/mongo/commandes';
+import { getCommandesServerSideProps } from '/components/ServerProps/getCommandesServerSideProps';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from '/styles/ProduitCard.module.css';
@@ -14,10 +14,10 @@ export default function Home({ commandes }) {
         {commandesJSON.map(({ _id, panier, user, date }) => (
           <div key={_id} className={styles.card}>
             <p>Commandes</p>
-            <p>#{_id}</p>
-            <p>Panier :{JSON.stringify(panier)}</p>
-            <p>User:{JSON.stringify(user)}</p>
-            <p>Date: {JSON.stringify(date)}</p>
+            <p># {_id}</p>
+            <p>Panier :{panier}</p>
+            <p>User:{user}</p>
+            <p>Date: {date}</p>
           </div>
         ))}
       </div>
@@ -25,16 +25,4 @@ export default function Home({ commandes }) {
   );
 }
 
-export async function getServerSideProps() {
-  const { commandes } = await getCommandes();
-  if (!commandes) throw new Error('Failed to fetch commandes');
-  // Convert the _id property of each user to a string, and stringify the panier and user objects
-  const commandesStringified = commandes.map((commande) => ({
-    ...commande,
-    _id: commande._id.toString(),
-    panier: JSON.parse(JSON.stringify(commande.panier)),
-    user: JSON.parse(JSON.stringify(commande.user)),
-    date: JSON.parse(JSON.stringify(commande.date)),
-  }));
-  return { props: { commandes: commandesStringified } };
-}
+export { getCommandesServerSideProps as getServerSideProps };
