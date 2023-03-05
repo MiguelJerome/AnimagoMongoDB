@@ -13,7 +13,7 @@ export default function Home({ commandes }) {
       <div className={styles.gallerie}>
         {commandesJSON.map(({ _id, panier, user, date }) => (
           <div key={_id} className={styles.card}>
-            <p>User</p>
+            <p>Commandes</p>
             <p>#{_id}</p>
             <p>Panier :{JSON.stringify(panier)}</p>
             <p>User:{JSON.stringify(user)}</p>
