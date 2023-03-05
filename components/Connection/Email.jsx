@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from '/styles/Connexion.module.css';
 
-function Email({ email, handleChange }) {
+const Email = ({ email, handleChange }) => {
   return (
     <div className={styles.promptWrapper}>
       <label className={styles.label} htmlFor="email">
@@ -14,12 +14,12 @@ function Email({ email, handleChange }) {
         type="email"
         id="email"
         value={email}
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={handleChange}
         className={styles.input}
       />
     </div>
   );
-}
+};
 
 Email.propTypes = {
   email: PropTypes.string.isRequired,

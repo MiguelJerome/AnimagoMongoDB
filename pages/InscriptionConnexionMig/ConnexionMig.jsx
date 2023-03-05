@@ -8,10 +8,12 @@ import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerS
 import BoutonReset from 'components/Connection/BoutonReset';
 import BoutonConnexion from '/components/Connection/BoutonConnexion';
 import Password from '/components/Connection/Password';
+import Email from '/components/Connection/Email';
 import useConnectionForm from '/components/Connection/useConnectionForm';
 
 export default function Connexion({ users }) {
   const [usersServerSide, setusersServerSide] = useState(users || []);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const router = useRouter();
   const [firstName, setFirstName] = useState('');
@@ -87,20 +89,11 @@ export default function Connexion({ users }) {
               <div className={styles.title}>
                 <h2>Connexion</h2>
               </div>
-              <div className={styles.promptWrapper}>
-                <label className={styles.label} htmlFor="email">
-                  Email address:
-                </label>
-                <input
-                  placeholder="tonemail@test.com"
-                  name="email"
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={styles.input}
-                />
-              </div>
+              <Email
+                email={email}
+                handleChange={(e) => setEmail(e.target.value)}
+                errorMessage="Votre email est invalide"
+              />
               <Password password={password} handleChange={handleChange} />
               <BoutonReset />
               <BoutonConnexion handleFormSubmit={handleFormSubmit} />
