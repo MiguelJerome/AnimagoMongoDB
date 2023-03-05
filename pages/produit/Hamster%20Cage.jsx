@@ -1,6 +1,6 @@
 import styles from '/styles/ProduitDescription.module.css';
 import ProduitParID from '/components/produit/filtration/ProduitParID';
-import { getPaniers } from '/server/config/mongo/paniers';
+import { getPaniersProps } from '/components/ServerProps/getPaniersProps';
 
 export default function Produit109({ panier }) {
   return (
@@ -11,12 +11,5 @@ export default function Produit109({ panier }) {
 }
 
 export async function getServerSideProps() {
-  const { paniers } = await getPaniers();
-  if (!paniers) throw new Error('Failed to fetch paniers');
-  // Convert the _id property of each panier to a string
-  const paniersStringified = paniers.map((panier) => ({
-    ...panier,
-    _id: panier._id.toString(),
-  }));
-  return { props: { panier: paniersStringified } };
+  return await getPaniersProps();
 }

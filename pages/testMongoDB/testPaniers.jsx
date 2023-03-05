@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { getPaniers } from '/server/config/mongo/paniers';
+//import { getPaniers } from '/server/config/mongo/paniers';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from '/styles/ProduitCard.module.css';
+import { getPaniersProps } from '/components/ServerProps/getPaniersProps';
 
-export default function Home({ paniers }) {
+export default function Home({ panier }) {
   const router = useRouter();
   //console.log('test produits:', JSON.stringify(paniers));
-  const paniersJSON = JSON.parse(JSON.stringify(paniers));
+  // const paniersJSON = JSON.parse(JSON.stringify(panier));
 
   return (
     <>
       <div className={styles.gallerie}>
-        {paniersJSON.map(({ _id, src, alt, name, price, stock }) => (
+        {panier.map(({ _id, src, alt, name, price, stock }) => (
           // {produitsState ?? [].map(({ _id, src, alt, name, price, stock }) => (
           <div key={_id} className={styles.imageContainer}>
             <Image
@@ -50,10 +51,15 @@ export async function getServerSideProps() {
   return { props: { panier: paniersStringified } };
 }
 */
+/*
 export async function getServerSideProps() {
   const { paniers } = await getPaniers();
   if (!paniers) throw new Error('Failed to fetch paniers');
   // Convert the _id property of each panier to a string
 
   return { props: { paniers } };
+}
+*/
+export async function getServerSideProps() {
+  return await getPaniersProps();
 }

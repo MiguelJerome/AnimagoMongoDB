@@ -5,7 +5,7 @@ import Image from 'next/image';
 import styles from '/styles/ProduitCard.module.css';
 
 export default function Home({ commandes }) {
-  console.log(commandes);
+  // console.log(commandes);
   const commandesJSON = JSON.parse(JSON.stringify(commandes));
 
   return (
