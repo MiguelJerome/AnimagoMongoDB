@@ -3,35 +3,35 @@
     "email": "johndoe@example.com",
     "password": "password123",
     "firstName": "John",
-    "lastName": "Doe",
+    "lastName": "DoeDoe11",
     "commandes": ["61b284ecae9fc50cc0f33e8c"]
   },
   {
     "firstName": "Bob",
     "lastName": "Gratton",
-    "email": "test@gmail.com",
-    "password": "test",
+    "email": "Test1111@gmail.com",
+    "password": "Test11111111",
     "commandes": ["61b284ecae9fc50cc0f33e8d"]
   },
   {
     "firstName": "Miguel",
     "lastName": "Jerome",
     "email": "Miguel@gmail.com",
-    "password": "test",
+    "password": "Test1111",
     "commandes": ["61b284ecae9fc50cc0f33e8e"]
   },
   {
     "firstName": "Simon",
     "lastName": "Cloutier",
     "email": "Simon@gmail.com",
-    "password": "test",
+    "password": "Test1111",
     "commandes": ["61b284ecae9fc50cc0f33e8f"]
   },
   {
     "firstName": "Huy",
     "lastName": "Tran",
     "email": "Huy@gmail.com",
-    "password": "test",
+    "password": "Test1111",
     "commandes": ["61b284ecae9fc50cc0f33e8a"]
   }
 ]

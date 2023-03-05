@@ -113,6 +113,7 @@
 
 .errorText {
   color: red;
+  margin: 0 15rem;
 }
 
 @media (max-width: 900px) {
