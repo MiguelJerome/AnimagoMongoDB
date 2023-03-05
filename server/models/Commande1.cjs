@@ -1,16 +1,14 @@
-const mongoose = require("mongoose");
-const User = require("./User.cjs");
-const Panier = require("./Panier1.cjs");
+const mongoose = require('mongoose');
 
 const commandeSchema = new mongoose.Schema({
   panier: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Panier",
+    ref: 'Panier',
     required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
   },
   date: { type: Date, default: Date.now, required: true },
@@ -19,9 +17,9 @@ const commandeSchema = new mongoose.Schema({
 let Commande;
 
 try {
-  Commande = mongoose.model("Commande");
+  Commande = mongoose.model('Commande');
 } catch (error) {
-  Commande = mongoose.model("Commande", commandeSchema);
+  Commande = mongoose.model('Commande', commandeSchema);
 }
 
 module.exports = Commande;
