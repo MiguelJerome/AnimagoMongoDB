@@ -3,8 +3,8 @@ import styles from '/styles/Connexion.module.css';
 //import { getUsers } from '/server/config/mongo/users';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
-
 import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
+import BoutonReset from '/components/Connection/BoutonReset';
 
 export default function Connexion({ users }) {
   const [usersServerSide, setusersServerSide] = useState(users || []);
@@ -93,11 +93,7 @@ export default function Connexion({ users }) {
                   className={styles.input}
                 />
               </div>
-              <div className={styles.promptWrapper}>
-                <button type="reset" className={styles.btnAuthentification}>
-                  Reset
-                </button>
-              </div>
+              <BoutonReset />
               <div className={styles.promptWrapper}>
                 <button
                   type="submit"
@@ -141,22 +137,5 @@ export default function Connexion({ users }) {
     </main>
   );
 }
-/*
-export async function getServerSideProps() {
-  return await getUsersServerSideProps();
-}
-*/
+
 export { getUsersServerSideProps as getServerSideProps };
-/*
-export async function getServerSideProps() {
-  const { users } = await getUsers();
-  if (!users) throw new Error('Failed to fetch users');
-  // Convert the _id property of each user to a string
-  const usersStringified = users.map((user) => ({
-    ...user,
-    _id: user._id.toString(),
-    commandes: JSON.stringify(user.commandes),
-  }));
-  return { props: { usersServer: usersStringified } };
-}
-*/

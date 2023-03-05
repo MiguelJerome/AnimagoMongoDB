@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useContactForm = () => {
+export const useConnectionForm = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -9,7 +9,7 @@ export const useContactForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
 
@@ -17,8 +17,9 @@ export const useContactForm = () => {
     const re = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z])$/;
     return re.test(password);
   };
-
   const handleChange = (e) => {
+    if (!e.target) return;
+
     const { name, value } = e.target;
 
     setFormData((prevFormData) => ({
