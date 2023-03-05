@@ -9,7 +9,7 @@ import { getPaniersProps } from '/components/ServerProps/getPaniersProps';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home({ panier }) {
-  console.log('test produits index page:', JSON.stringify(panier));
+  //  console.log('test produits index page:', JSON.stringify(panier));
   // const [cart, initCart, addToCart, removeFromCart, setCart, getPurchaseQuantity, getRemainingStock ] = useCart();
   return (
     <>
@@ -19,19 +19,6 @@ export default function Home({ panier }) {
     </>
   );
 }
-
-/*
-export async function getServerSideProps() {
-  const { paniers } = await getPaniers();
-  if (!paniers) throw new Error('Failed to fetch paniers');
-  // Convert the _id property of each panier to a string
-  const paniersStringified = paniers.map((panier) => ({
-    ...panier,
-    _id: panier._id.toString(),
-  }));
-  return { props: { panier: paniersStringified } };
-}
-*/
 
 export async function getServerSideProps() {
   return await getPaniersProps();

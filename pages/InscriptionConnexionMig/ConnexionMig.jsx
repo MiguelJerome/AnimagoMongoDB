@@ -1,11 +1,13 @@
 import { Inter } from '@next/font/google';
 import styles from '/styles/Connexion.module.css';
-import { getUsers } from '/server/config/mongo/users';
+//import { getUsers } from '/server/config/mongo/users';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 
-export default function Connexion({ usersServer }) {
-  const [users, setUsers] = useState(usersServer || []);
+import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
+
+export default function Connexion({ users }) {
+  const [usersServerSide, setusersServerSide] = useState(users || []);
 
   const router = useRouter();
   const [email, setEmail] = useState('');
@@ -14,7 +16,7 @@ export default function Connexion({ usersServer }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const account = users.find((user) => user.email === email);
+    const account = usersServerSide.find((user) => user.email === email);
     if (account && account.password === password) {
       const userData = { email, password };
       localStorage.setItem('token-info', JSON.stringify(userData));
@@ -139,7 +141,13 @@ export default function Connexion({ usersServer }) {
     </main>
   );
 }
-
+/*
+export async function getServerSideProps() {
+  return await getUsersServerSideProps();
+}
+*/
+export { getUsersServerSideProps as getServerSideProps };
+/*
 export async function getServerSideProps() {
   const { users } = await getUsers();
   if (!users) throw new Error('Failed to fetch users');
@@ -151,3 +159,4 @@ export async function getServerSideProps() {
   }));
   return { props: { usersServer: usersStringified } };
 }
+*/

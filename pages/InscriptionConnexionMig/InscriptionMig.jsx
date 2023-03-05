@@ -1,20 +1,17 @@
 import { Inter } from '@next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 import styles from '/styles/Inscription.module.css';
-import { getUsers } from '/server/config/mongo/users';
+//import { getUsers } from '/server/config/mongo/users';
+import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-//import { useMutation } from '@apollo/client';
-//import Auth from '../utils/auth';
-//import { ADD_USER } from '../utils/mutations';
-
-export default function Inscription({ usersServer }) {
-  const [users, setUsers] = useState(usersServer || []);
+export default function Inscription({ users }) {
+  const [usersServerSide, setusersServerSide] = useState(users || []);
   console.log(
     'Inscription reading user server side props:',
-    JSON.stringify(usersServer)
+    JSON.stringify(users)
   );
   const router = useRouter();
   //Reference: https://www.geeksforgeeks.org/how-to-log-out-user-from-app-using-reactjs/
@@ -198,6 +195,8 @@ export default function Inscription({ usersServer }) {
   );
 }
 
+export { getUsersServerSideProps as getServerSideProps };
+/*
 export async function getServerSideProps() {
   const { users } = await getUsers();
   if (!users) throw new Error('Failed to fetch users');
@@ -209,3 +208,4 @@ export async function getServerSideProps() {
   }));
   return { props: { usersServer: usersStringified } };
 }
+*/

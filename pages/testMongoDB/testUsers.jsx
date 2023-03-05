@@ -1,10 +1,10 @@
 import React from 'react';
-import { getUsers } from '/server/config/mongo/users';
+import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from '/styles/ProduitCard.module.css';
 
-export default function Home({ users }) {
+export default function Users({ users }) {
   console.log('test users:', JSON.stringify(users));
   const usersJSON = JSON.parse(JSON.stringify(users));
 
@@ -20,7 +20,7 @@ export default function Home({ users }) {
               <p>Password:{password}</p>
               <p>Prenom: {firstName}</p>
               <p>Nom: {lastName}</p>
-              <p>Commandes: {JSON.stringify(commandes)}</p>
+              <p>Commandes: {commandes}</p>
             </div>
           )
         )}
@@ -28,7 +28,14 @@ export default function Home({ users }) {
     </>
   );
 }
+/*
+export async function getServerSideProps() {
+  return await getUsersServerSideProps();
+}
+*/
 
+export { getUsersServerSideProps as getServerSideProps };
+/*
 export async function getServerSideProps() {
   const { users } = await getUsers();
   if (!users) throw new Error('Failed to fetch users');
@@ -40,3 +47,4 @@ export async function getServerSideProps() {
   }));
   return { props: { users: usersStringified } };
 }
+*/
