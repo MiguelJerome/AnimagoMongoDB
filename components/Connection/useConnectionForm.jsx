@@ -17,9 +17,8 @@ export const useConnectionForm = () => {
     const re = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z])$/;
     return re.test(password);
   };
-  const handleChange = (e) => {
-    if (!e.target) return;
 
+  const handleChange = (e) => {
     const { name, value } = e.target;
 
     setFormData((prevFormData) => ({
@@ -66,3 +65,5 @@ export const useConnectionForm = () => {
     handleSubmit,
   };
 };
+
+export default useConnectionForm;

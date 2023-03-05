@@ -1,7 +1,6 @@
-import React from 'react';
 import styles from '/styles/Connexion.module.css';
 
-function BoutonConnexion({ handleFormSubmit }) {
+export default function BoutonConnexion({ handleFormSubmit }) {
   return (
     <div className={styles.promptWrapper}>
       <button
@@ -14,5 +13,3 @@ function BoutonConnexion({ handleFormSubmit }) {
     </div>
   );
 }
-
-export default BoutonConnexion;

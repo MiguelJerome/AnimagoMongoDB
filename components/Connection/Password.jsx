@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from '/styles/Connexion.module.css';
 
-function Password({ password, handleChange }) {
+const Password = ({ password, handleChange }) => {
   return (
     <div className={styles.promptWrapper}>
       <label className={styles.label} htmlFor="pwd">
@@ -19,7 +19,7 @@ function Password({ password, handleChange }) {
       />
     </div>
   );
-}
+};
 
 Password.propTypes = {
   password: PropTypes.string.isRequired,

@@ -5,6 +5,10 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 
 import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
+import BoutonReset from 'components/Connection/BoutonReset';
+import BoutonConnexion from '/components/Connection/BoutonConnexion';
+import Password from '/components/Connection/Password';
+import useConnectionForm from '/components/Connection/useConnectionForm';
 
 export default function Connexion({ users }) {
   const [usersServerSide, setusersServerSide] = useState(users || []);
@@ -15,6 +19,12 @@ export default function Connexion({ users }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedin, setIsLoggedin] = useState();
+
+  // const { formData, errorMessage, handleChange, handleSubmit } =
+  //   useConnectionForm();
+  const handleChange = (e) => {
+    setPassword(e.target.value);
+  };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -91,34 +101,9 @@ export default function Connexion({ users }) {
                   className={styles.input}
                 />
               </div>
-              <div className={styles.promptWrapper}>
-                <label className={styles.label} htmlFor="pwd">
-                  Password:
-                </label>
-                <input
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  id="pwd"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={styles.input}
-                />
-              </div>
-              <div className={styles.promptWrapper}>
-                <button type="reset" className={styles.btnAuthentification}>
-                  Reset
-                </button>
-              </div>
-              <div className={styles.promptWrapper}>
-                <button
-                  type="submit"
-                  className={styles.btnAuthentification}
-                  onClickCapture={handleFormSubmit}
-                >
-                  Connexion
-                </button>
-              </div>
+              <Password password={password} handleChange={handleChange} />
+              <BoutonReset />
+              <BoutonConnexion handleFormSubmit={handleFormSubmit} />
             </form>
           </>
         ) : (
