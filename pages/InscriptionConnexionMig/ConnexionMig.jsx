@@ -3,13 +3,15 @@ import styles from '/styles/Connexion.module.css';
 //import { getUsers } from '/server/config/mongo/users';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
+
 import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
-import BoutonReset from '/components/Connection/BoutonReset';
 
 export default function Connexion({ users }) {
   const [usersServerSide, setusersServerSide] = useState(users || []);
 
   const router = useRouter();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedin, setIsLoggedin] = useState();
@@ -22,7 +24,9 @@ export default function Connexion({ users }) {
       localStorage.setItem('token-info', JSON.stringify(userData));
       localStorage.setItem('isLoggedin', 'true');
       setIsLoggedin(true);
-      setEmail('');
+      setFirstName(account.firstName);
+      setLastName(account.lastName);
+      setEmail(account.email);
       setPassword('');
     }
   };
@@ -31,6 +35,11 @@ export default function Connexion({ users }) {
     setIsLoggedin(localStorage.getItem('token-info') !== null);
   }, []);
 
+  const handleFormReset = (event) => {
+    event.preventDefault();
+    setEmail('');
+    setPassword('');
+  };
   const logout = () => {
     localStorage.removeItem('token-info');
     localStorage.setItem('isLoggedin', 'false');
@@ -61,7 +70,10 @@ export default function Connexion({ users }) {
                 ← Aller à l'inscription
               </button>
             </div>
-            <form className={styles.formAuthentificationWrapper}>
+            <form
+              className={styles.formAuthentificationWrapper}
+              onReset={handleFormReset}
+            >
               <div className={styles.title}>
                 <h2>Connexion</h2>
               </div>
@@ -93,7 +105,11 @@ export default function Connexion({ users }) {
                   className={styles.input}
                 />
               </div>
-              <BoutonReset />
+              <div className={styles.promptWrapper}>
+                <button type="reset" className={styles.btnAuthentification}>
+                  Reset
+                </button>
+              </div>
               <div className={styles.promptWrapper}>
                 <button
                   type="submit"
@@ -118,8 +134,9 @@ export default function Connexion({ users }) {
             <div className={styles.title}>
               <h2>Déconnexion?</h2>
               <label className={styles.label}>
-                Oups! On dirais que vous etes déjà connecter. Voulez-vous vous
-                déconnecter ou retourner a l'accueil?
+                {`Bonjour ${firstName} ${lastName},`}
+                Vous êtes déjà connecté avec l'adresse e-mail : {email}.
+                Souhaitez-vous vous déconnecter ou retourner à l'accueil ?
               </label>
             </div>
             <div className={styles.promptWrapper}>
