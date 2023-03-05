@@ -92,7 +92,7 @@ export default function Connexion({ users }) {
               <Email
                 email={email}
                 handleChange={(e) => setEmail(e.target.value)}
-                errorMessage="Votre email est invalide"
+                errorMessage="S'il vous plaît, mettez une adresse email valide"
               />
               <Password password={password} handleChange={handleChange} />
               <BoutonReset />
