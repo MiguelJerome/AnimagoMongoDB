@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from '/styles/Connexion.module.css';
 
-const Email = ({ email, handleChange, errorMessage }) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const Email = ({ email, handleChange, errorMessage, regex }) => {
+  const emailRegex = new RegExp(regex);
   const isValidEmail = emailRegex.test(email);
 
   return (

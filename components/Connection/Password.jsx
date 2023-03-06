@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from '/styles/Connexion.module.css';
 
-const Password = ({ password, handleChange }) => {
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+const Password = ({ password, handleChange, regex }) => {
+  const passwordRegex = new RegExp(regex);
   const isValidPassword = passwordRegex.test(password);
 
   const errorMessage =

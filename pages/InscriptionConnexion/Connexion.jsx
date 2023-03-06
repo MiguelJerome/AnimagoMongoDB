@@ -3,6 +3,8 @@ import styles from '/styles/Connexion.module.css';
 //import { getUsers } from '/server/config/mongo/users';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
 import BoutonReset from 'components/Connection/BoutonReset';
@@ -31,6 +33,16 @@ export default function Connexion({ users }) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const account = usersServerSide.find((user) => user.email === email);
+    if (!account) {
+      setErrorMessage(`Le compte n'existe pas.`);
+      toast.error(`Le compte n'existe pas.`, {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: 'bottom-center',
+      });
+      return;
+    }
     if (account && account.password === password) {
       const userData = { email, password };
       localStorage.setItem('token-info', JSON.stringify(userData));
@@ -40,6 +52,24 @@ export default function Connexion({ users }) {
       setLastName(account.lastName);
       setEmail(account.email);
       setPassword('');
+      setErrorMessage('');
+      toast.success(
+        `Félicitations ! Vous êtes maintenant connecté à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
+        {
+          hideProgressBar: true,
+          autoClose: 5000,
+          type: 'success',
+          position: 'bottom-center',
+        }
+      );
+    } else {
+      setErrorMessage('Le mot de passe est incorrect.');
+      toast.error('Le mot de passe est incorrect.', {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: 'bottom-center',
+      });
     }
   };
 
@@ -51,15 +81,32 @@ export default function Connexion({ users }) {
     event.preventDefault();
     setEmail('');
     setPassword('');
+    setErrorMessage('');
+    toast.success('Formulaire Connexion effacé.', {
+      hideProgressBar: true,
+      autoClose: 2000,
+      type: 'success',
+      position: 'bottom-center',
+    });
   };
   const logout = () => {
     localStorage.removeItem('token-info');
     localStorage.setItem('isLoggedin', 'false');
     setIsLoggedin(false);
+    toast.success(
+      `Félicitations ! Vous avez été déconnecté avec succès de Animago. N'hésitez pas à revenir pour découvrir de nouveaux contenus exclusifs et rester en contact avec notre communauté passionnée.`,
+      {
+        hideProgressBar: true,
+        autoClose: 4000,
+        type: 'success',
+        position: 'bottom-center',
+      }
+    );
   };
 
   return (
     <main>
+      <ToastContainer />
       <div className={styles.container}>
         {!isLoggedin ? (
           <>
@@ -93,10 +140,19 @@ export default function Connexion({ users }) {
                 email={email}
                 handleChange={(e) => setEmail(e.target.value)}
                 errorMessage="S'il vous plaît, mettez une adresse email valide"
+                regex="^[^\s@]+@[^\s@]+\.[^\s@]+$"
               />
-              <Password password={password} handleChange={handleChange} />
+              <Password
+                password={password}
+                handleChange={handleChange}
+                regex="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              />
+
               <BoutonReset />
               <BoutonConnexion handleFormSubmit={handleFormSubmit} />
+              {errorMessage && (
+                <div className={styles.errorText}>{errorMessage}</div>
+              )}
             </form>
           </>
         ) : (
