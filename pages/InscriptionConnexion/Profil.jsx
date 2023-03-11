@@ -28,6 +28,11 @@ export default function Profil(usersServer) {
   useEffect(() => {
     if (localStorage.getItem('token-info') !== null) {
       console.log(localStorage.getItem('token-info'));
+      const info = JSON.parse(localStorage.getItem('token-info'));
+      setFirstName(info.firstName);
+      setLastName(info.lastName);
+      setEmail(info.email);
+      setPassword(info.password);
     }
   }, []);
   console.log('test afficahge nom', users.firstName);
@@ -44,7 +49,15 @@ export default function Profil(usersServer) {
             </button>
           </div>
           <div className={styles.title}>
-            <h2>Bonjour </h2> <h2>{firstName}</h2>
+            <label className={styles.label}>
+              {`Bonjour ${firstName} ${lastName},`}
+            </label>
+            <label className={styles.label}>
+              Vous êtes connecté avec l'adresse e-mail : {email}.
+            </label>
+            <label className={styles.label}>
+              Votre mots de passe que vous utiliser est : {password}.
+            </label>
           </div>
         </div>
       </main>

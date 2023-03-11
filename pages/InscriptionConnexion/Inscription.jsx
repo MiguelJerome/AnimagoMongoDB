@@ -1,67 +1,112 @@
 import { Inter } from '@next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 import styles from '/styles/Inscription.module.css';
-import { getUsers } from '/server/config/mongo/users';
+//import { getUsers } from '/server/config/mongo/users';
+import BoutonReset from 'components/Connection/BoutonReset';
+import BoutonConnexion from '/components/Connection/BoutonConnexion';
+import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-//import { useMutation } from '@apollo/client';
-//import Auth from '../utils/auth';
-//import { ADD_USER } from '../utils/mutations';
+export default function Inscription({ users }) {
+  const [usersServerSide, setusersServerSide] = useState(users || []);
+  const [errorMessage, setErrorMessage] = useState('');
 
-export default function Inscription(usersServer) {
-  console.log(
-    'Inscription reading user server side props:',
-    JSON.stringify(usersServer)
-  );
   const router = useRouter();
-  //Reference: https://www.geeksforgeeks.org/how-to-log-out-user-from-app-using-reactjs/
-  const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isLoggedin, setIsLoggedin] = useState();
 
-  const signUp = (e) => {
-    e.preventDefault();
-    const userData = {
-      firstName,
-      lastName,
-      email,
-      password,
-    };
+  // const { formData, errorMessage, handleChange, handleSubmit } =
+  //   useConnectionForm();
+  const handleChange = (e) => {
+    setPassword(e.target.value);
   };
 
-  const login = (e) => {
-    e.preventDefault();
-    const userData = {
-      firstName,
-      lastName,
-      email,
-      password,
-    };
-    localStorage.setItem('token-info', JSON.stringify(userData));
-    localStorage.setItem('isLoggedin', 'true');
-    setIsLoggedin(true);
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const account = usersServerSide.find((user) => user.email === email);
+    if (account) {
+      setErrorMessage(`Les informations correspond a un compte déjà existant.`);
+      toast.error(`Les informations correspond a un compte déjà existant.`, {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: 'bottom-center',
+      });
+      return;
+    }
+    if (!account && confirmPassword === password) {
+      const userData = { lastName, firstName, email, password };
+      localStorage.setItem('token-info', JSON.stringify(userData));
+      localStorage.setItem('isLoggedin', 'true');
+      setIsLoggedin(true);
+      setFirstName(firstName);
+      setLastName(lastName);
+      setEmail(email);
+      setPassword('');
+      setConfirmPassword('');
+      setErrorMessage('');
+      toast.success(
+        `Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
+        {
+          hideProgressBar: true,
+          autoClose: 5000,
+          type: 'success',
+          position: 'bottom-center',
+        }
+      );
+    } else if (confirmPassword !== password){
+      setErrorMessage('Le mot de passe ne correspond pas a celui que vous avez confirmé.');
+      toast.error('Le mot de passe ne correspond pas a celui que vous avez confirmé.', {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: 'bottom-center',
+      });
+    }
+  };
+
+  useEffect(() => {
+    setIsLoggedin(localStorage.getItem('token-info') !== null);
+  }, []);
+
+  const handleFormReset = (event) => {
+    event.preventDefault();
+    setEmail('');
     setFirstName('');
     setLastName('');
-    setEmail('');
     setPassword('');
+    setConfirmPassword('');
+    setErrorMessage('');
+    toast.success('Formulaire Inscription effacé.', {
+      hideProgressBar: true,
+      autoClose: 2000,
+      type: 'success',
+      position: 'bottom-center',
+    });
   };
   const logout = () => {
     localStorage.removeItem('token-info');
     localStorage.setItem('isLoggedin', 'false');
     setIsLoggedin(false);
+    toast.success(
+      `Félicitations ! Vous avez été déconnecté avec succès de Animago. N'hésitez pas à revenir pour découvrir de nouveaux contenus exclusifs et rester en contact avec notre communauté passionnée.`,
+      {
+        hideProgressBar: true,
+        autoClose: 4000,
+        type: 'success',
+        position: 'bottom-center',
+      }
+    );
   };
 
-  useEffect(() => {
-    if (localStorage.getItem('token-info') !== null) {
-      setIsLoggedin(true);
-    } else {
-      setIsLoggedin(false);
-    }
-  }, []);
   return (
     <>
       <main>
@@ -87,7 +132,10 @@ export default function Inscription(usersServer) {
                   ← Aller à Connexionn
                 </button>
               </div>
-              <form className={styles.formAuthentificationWrapper}>
+            <form
+              className={styles.formAuthentificationWrapper}
+              onReset={handleFormReset}
+            >
                 <div className={styles.title}>
                   <h2>Inscription</h2>
                 </div>
@@ -148,19 +196,25 @@ export default function Inscription(usersServer) {
                   />
                 </div>
                 <div className={styles.promptWrapper}>
-                  <button type="reset" className={styles.btnAuthentification}>
-                    Reset
-                  </button>
+                  <label className={styles.label} htmlFor="pwd">
+                    Confirm password:
+                  </label>
+                  <input
+                    placeholder="******"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    name="confirmpassword"
+                    type="password"
+                    id="pwd"
+                    className={styles.input}
+                    required
+                  />
                 </div>
-                <div className={styles.promptWrapper}>
-                  <button
-                    type="submit"
-                    onClickCapture={login}
-                    className={styles.btnAuthentification}
-                  >
-                    S'inscrire
-                  </button>
-                </div>
+                
+              <BoutonReset />
+              <BoutonConnexion handleFormSubmit={handleFormSubmit} />
+              {errorMessage && (
+                <div className={styles.errorText}>{errorMessage}</div>
+              )}
               </form>
             </>
           ) : (
@@ -197,6 +251,8 @@ export default function Inscription(usersServer) {
   );
 }
 
+export { getUsersServerSideProps as getServerSideProps };
+/*
 export async function getServerSideProps() {
   const { users } = await getUsers();
   if (!users) throw new Error('Failed to fetch users');
@@ -208,3 +264,4 @@ export async function getServerSideProps() {
   }));
   return { props: { usersServer: usersStringified } };
 }
+*/

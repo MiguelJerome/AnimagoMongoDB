@@ -3,14 +3,13 @@ import Image from 'next/image';
 import CheckoutPanier from '/public/img/cart.png';
 import styles from '/styles/Cart.module.css';
 import GrandTotalItemResultat from '/components/AchatPanier/PanierPanneauDroit/GrandTotalItemResultat';
-import GrandTotalMontantResultat from '/components/AchatPanier/PanierPanneauDroit/GrandTotalMontantResultat';
 import { toast } from 'react-toastify';
 
 const CheckoutBtn = ({ submitCheckout, calculateTotal, total }) => {
   function handleClick() {
     if (
       typeof calculateTotal === 'function' &&
-      (calculateTotal <= 0 || total <= 0)
+      (calculateTotal() <= 0 || total <= 0)
     ) {
       toast.error('Vous ne pouvez pas Régler la note votre panier est vide', {
         hideProgressBar: true,
@@ -18,7 +17,7 @@ const CheckoutBtn = ({ submitCheckout, calculateTotal, total }) => {
         type: 'error',
         position: 'bottom-right',
       });
-    } else {
+    } else if (typeof submitCheckout === 'function') {
       submitCheckout();
     }
   }

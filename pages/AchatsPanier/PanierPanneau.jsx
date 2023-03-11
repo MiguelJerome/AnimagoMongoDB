@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useCart } from '/components/AchatPanier/UseCart.jsx';
 import { toast } from 'react-toastify';
 import MainTouteComponentPanier from '/components/AchatPanier/PanierPanneauDroit/MainTouteComponentPanier';
 import styles from '/styles/Header.module.css';
-import UpdateProductStockAndSetCart from '/components/ProduitBindingPanier/UpdateProductStockAndSetCart/UpdateProductStockAndSetCart';
-import GetterSetterTotalPriceInCart from '/components/ProduitBindingPanier/GetterSetterTotalPriceInCart/GetterSetterTotalPriceInCart';
+import { savePanierServerSideProps } from '/components/ServerProps/savePanierServerSideProps';
+import SubmitCheckoutMain from '/components/AchatPanier/PanierPanneauDroit/CheckoutPanier/SubmitCheckoutMain';
 
 export default function PanierPanneau({
+  props,
   toggler,
   cart,
   initCart,
@@ -17,10 +17,10 @@ export default function PanierPanneau({
   getPurchaseQuantity,
   getRemainingStock,
 }) {
-  //  const [cart, initCart, addToCart, removeFromCart, setCart, getPurchaseQuantity, getRemainingStock ] = useCart();
   const router = useRouter();
   const [orders, setOrders] = useState([]);
   const [totalPriceInCart, setTotalPriceInCart] = useState(0);
+  //const panier = props.panier || null;
   /*
   useEffect(() => {
     initCart();
@@ -127,35 +127,30 @@ export default function PanierPanneau({
           getRemainingStock={getRemainingStock}
           getPurchaseQuantity={getPurchaseQuantity}
         />
+        <SubmitCheckoutMain
+          cart={cart}
+          setOrders={setOrders}
+          orders={orders}
+          totalPriceInCart={totalPriceInCart}
+        />
       </div>
     </>
   );
 }
 
-/*
 export async function getServerSideProps(context) {
-  const [
-    cart,
-    initCart,
-    addToCart,
-    removeFromCart,
-    setCart,
-    getPurchaseQuantity,
-    getRemainingStock
-  ] = useCart();
+  // Get the cart from the request
+  const { cart } = context.req.body;
 
-  return {
-    props: {
-      cartProps: [
-        cart,
-        initCart,
-        addToCart,
-        removeFromCart,
-        setCart,
-        getPurchaseQuantity,
-        getRemainingStock
-      ]
-    }
-  };
+  // Save the panier and get the props
+  const { panier, error } = await savePanierServerSideProps({ cart });
+
+  // Handle the case where an error occurred while saving the panier
+  if (error) {
+    console.error(error);
+    return { props: {} };
+  }
+
+  // Pass the panier props to the page component
+  return { props: { panier: panier || null } };
 }
-*/

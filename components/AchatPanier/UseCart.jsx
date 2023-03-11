@@ -61,6 +61,18 @@ export const useCart = (panier) => {
     return 0;
   };
 
+  const updateStock = (cart) => {
+    const updatedPanier = panier.map((p) => {
+      const item = cart.find((c) => c._id === p._id);
+      if (item) {
+        return { ...p, stock: p.stock - item.purchaseQuantity };
+      }
+      return p;
+    });
+
+    panier = updatedPanier;
+  };
+
   return [
     cart,
     initCart,
@@ -69,5 +81,6 @@ export const useCart = (panier) => {
     setCart,
     getPurchaseQuantity,
     getRemainingStock,
+    updateStock,
   ];
 };

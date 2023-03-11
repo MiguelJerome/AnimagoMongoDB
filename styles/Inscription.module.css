@@ -18,6 +18,10 @@
   font-size: 3rem;
   color: rgb(254, 59, 0);
 }
+.errorText {
+  color: red;
+  margin: 0 15rem;
+}
 
 .question {
   display: flex;

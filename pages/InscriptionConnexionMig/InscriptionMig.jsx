@@ -9,57 +9,96 @@ import { useRouter } from 'next/router';
 
 export default function Inscription({ users }) {
   const [usersServerSide, setusersServerSide] = useState(users || []);
-  console.log(
-    'Inscription reading user server side props:',
-    JSON.stringify(users)
-  );
+  const [errorMessage, setErrorMessage] = useState('');
+
   const router = useRouter();
-  //Reference: https://www.geeksforgeeks.org/how-to-log-out-user-from-app-using-reactjs/
-  const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isLoggedin, setIsLoggedin] = useState();
 
-  const signUp = (e) => {
-    e.preventDefault();
-    const userData = {
-      firstName,
-      lastName,
-      email,
-      password,
-    };
+  // const { formData, errorMessage, handleChange, handleSubmit } =
+  //   useConnectionForm();
+  const handleChange = (e) => {
+    setPassword(e.target.value);
   };
 
-  const login = (e) => {
-    e.preventDefault();
-    const userData = {
-      firstName,
-      lastName,
-      email,
-      password,
-    };
-    localStorage.setItem('token-info', JSON.stringify(userData));
-    localStorage.setItem('isLoggedin', 'true');
-    setIsLoggedin(true);
-    setFirstName('');
-    setLastName('');
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const account = usersServerSide.find((user) => user.email === email);
+    if (account) {
+      setErrorMessage(`Les informations correspond a un compte déjà existant.`);
+      toast.error(`Les informations correspond a un compte déjà existant.`, {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: 'bottom-center',
+      });
+      return;
+    }
+    if (!account && confirmPassword === password) {
+      const userData = { email, password };
+      localStorage.setItem('token-info', JSON.stringify(userData));
+      localStorage.setItem('isLoggedin', 'true');
+      setIsLoggedin(true);
+      setFirstName(account.firstName);
+      setLastName(account.lastName);
+      setEmail(account.email);
+      setPassword('');
+      setErrorMessage('');
+      toast.success(
+        `Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
+        {
+          hideProgressBar: true,
+          autoClose: 5000,
+          type: 'success',
+          position: 'bottom-center',
+        }
+      );
+    } else if (confirmPassword !== password){
+      setErrorMessage('Le mot de passe ne correspond pas a celui que vous avez confirmé.');
+      toast.error('Le mot de passe ne correspond pas a celui que vous avez confirmé.', {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: 'bottom-center',
+      });
+    }
+  };
+
+  useEffect(() => {
+    setIsLoggedin(localStorage.getItem('token-info') !== null);
+  }, []);
+
+  const handleFormReset = (event) => {
+    event.preventDefault();
     setEmail('');
     setPassword('');
+    setErrorMessage('');
+    toast.success('Formulaire Connexion effacé.', {
+      hideProgressBar: true,
+      autoClose: 2000,
+      type: 'success',
+      position: 'bottom-center',
+    });
   };
   const logout = () => {
     localStorage.removeItem('token-info');
     localStorage.setItem('isLoggedin', 'false');
     setIsLoggedin(false);
+    toast.success(
+      `Félicitations ! Vous avez été déconnecté avec succès de Animago. N'hésitez pas à revenir pour découvrir de nouveaux contenus exclusifs et rester en contact avec notre communauté passionnée.`,
+      {
+        hideProgressBar: true,
+        autoClose: 4000,
+        type: 'success',
+        position: 'bottom-center',
+      }
+    );
   };
 
-  useEffect(() => {
-    if (localStorage.getItem('token-info') !== null) {
-      setIsLoggedin(true);
-    } else {
-      setIsLoggedin(false);
-    }
-  }, []);
   return (
     <>
       <main>
@@ -85,7 +124,8 @@ export default function Inscription({ users }) {
                   ← Aller à Connexionn
                 </button>
               </div>
-              <form className={styles.formAuthentificationWrapper}>
+              <form className={styles.formAuthentificationWrapper}
+              onReset={handleFormReset}>
                 <div className={styles.title}>
                   <h2>Inscription</h2>
                 </div>
@@ -139,6 +179,20 @@ export default function Inscription({ users }) {
                     placeholder="******"
                     onChange={(e) => setPassword(e.target.value)}
                     name="password"
+                    type="password"
+                    id="pwd"
+                    className={styles.input}
+                    required
+                  />
+                </div>
+                <div className={styles.promptWrapper}>
+                  <label className={styles.label} htmlFor="pwd">
+                    Confirm password:
+                  </label>
+                  <input
+                    placeholder="******"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    name="confirmpassword"
                     type="password"
                     id="pwd"
                     className={styles.input}

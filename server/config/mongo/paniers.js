@@ -27,3 +27,13 @@ export async function getPaniers() {
     return { error: 'Failed to fetch paniers!' };
   }
 }
+
+export async function savePanier(panier) {
+  try {
+    if (!paniers) await init();
+    const result = await paniers.insertOne(panier);
+    return { success: true, panier: result.ops[0] };
+  } catch (error) {
+    return { error: 'Failed to save panier!' };
+  }
+}

@@ -111,7 +111,7 @@ export default function Header() {
               />
             </a>
             <p className={styles.p}>
-              Vos article préféré pour vos animaux préféré
+              Vos articles préférés pour vos animaux préférés.
             </p>
           </div>
           <div

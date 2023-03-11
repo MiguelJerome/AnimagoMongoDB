@@ -29,9 +29,19 @@ const SubmitCheckout = ({
       }
     });
 
-    setOrders([...orders, cart]);
+    // Update the panier array with new stock values
+    const updatedPanier = panier.map((p) => {
+      const item = cart.find((c) => c._id === p._id);
+      if (item) {
+        return { ...p, stock: p.stock - item.purchaseQuantity };
+      }
+      return p;
+    });
 
+    setOrders([...orders, cart]);
     setCart([]);
+    setPanier(updatedPanier); // Update the panier state with the new array
+
     router.push({
       pathname: '/AchatsPanier/HistoriqueCommande',
       query: { orders: JSON.stringify(orders) },

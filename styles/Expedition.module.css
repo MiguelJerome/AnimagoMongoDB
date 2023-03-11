@@ -3,15 +3,19 @@
   flex-direction: column;
   line-height: 2;
   margin: auto;
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
 .titreExpedition {
+  display: flex;
+  justify-content: left;
   font-size: 35px;
   color: rgb(254, 59, 0);
   font-weight: bold;
-  align-items: flex-start;
   padding-top: 2rem;
   margin-bottom: 2rem;
+  margin-left: 5rem;
 }
 
 .soustitreExpedition {
@@ -20,19 +24,38 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-.bodyExpedition {
-  margin-left: 15rem;
-  margin-right: 15rem;
-  margin-top: 1rem;
-  margin-bottom: 8rem;
-  width: 450px;
+
+
+.body2Expedition {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
 }
+
+.photoExpedition {
+  padding: 1.5rem;
+}
+
+.imgResize {
+  height: auto;
+  max-width: 100%;
+  min-width: 15rem;
+  margin: auto;
+}
+
 @media (max-width: 700px) {
   .titreExpedition {
     font-size: 2rem;
   }
+
   .bodyExpedition {
     margin: auto;
     margin-left: 1rem;
+  }
+
+  .body2Expedition {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '/styles/Cart.module.css';
+import panier from '/models/panier.jsx';
 
 const PoubelleSupprimerPanier = ({
   item,
@@ -8,12 +9,14 @@ const PoubelleSupprimerPanier = ({
   cart,
   setCart,
 }) => {
+  const initialCartItem = panier.find((p) => p._id === item._id);
+
   const clearInput = () => {
-    handleChange(item, 0);
+    handleChange(item, initialCartItem.stock);
   };
 
   const clearDepart = () => {
-    const updatedProduct = { ...item, stock: 0 };
+    const updatedProduct = { ...item, stock: initialCartItem.stock };
     const updatedCart = Array.isArray(cart)
       ? cart.map((p) => {
           if (p._id === item._id) {
