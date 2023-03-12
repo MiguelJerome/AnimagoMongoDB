@@ -14,8 +14,6 @@ import {
   handleChange,
 } from '/components/AchatPanier/PanierLogic/PanierOrderLogic';
 
-//import { useAllPanierLogic } from '/components/AchatPanier/PanierLogic/usePanierAllLogic';
-
 export default function PanierPanneau({
   toggler,
   cart,
@@ -74,15 +72,9 @@ export default function PanierPanneau({
           totalItemPurchase={totalItemPurchase}
         >
           <SubmitCheckoutMain
-            cart={cart}
-            setOrders={setOrders}
-            orders={orders}
             totalPriceInCart={totalPriceInCart}
             totalItemPurchase={totalItemPurchase}
             submitCheckout={handleCheckout}
-            panier={cart} // Pass the panier variable as a prop
-            setCart={setCart}
-            setPanier={setPanier} // Pass the setPanier function as a prop
           />
         </MainTouteComponentPanier>
       </div>

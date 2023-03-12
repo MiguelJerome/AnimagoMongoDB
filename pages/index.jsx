@@ -1,7 +1,6 @@
 import { Inter } from '@next/font/google';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-export { default as PanierVideMessage } from '/components/AchatPanier/PanierVideMessage.jsx';
 //import { getPaniers } from '/server/config/mongo/paniers';
 import { useCart } from '/components/AchatPanier/UseCart.jsx';
 import { getPaniersProps } from '/components/ServerProps/getPaniersProps';
