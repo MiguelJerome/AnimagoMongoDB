@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 export const calcTotal = (cart, setTotalPriceInCart, setTotalItemPurchase) => {
   let sum = 0;
   let totalItemPurchase = 0;
@@ -13,16 +14,7 @@ export const calcTotal = (cart, setTotalPriceInCart, setTotalItemPurchase) => {
   setTotalItemPurchase(totalItemPurchase);
 };
 
-export const submitCheckout = (
-  cart,
-  setOrders,
-  orders,
-  totalPriceInCart,
-  setCart,
-  panier,
-  setPanier,
-  toast
-) => {
+export const submitCheckout = (cart, setOrders, orders, totalPriceInCart) => {
   if (totalPriceInCart <= 0) {
     toast.warning(
       'Votre panier est actuellement vide. Pour pouvoir effectuer une commande, veuillez ajouter des produits à votre panier.',

@@ -22,6 +22,7 @@ export default function PanierPanneau({
   setCart,
   getPurchaseQuantity,
   getRemainingStock,
+  toast, // add toast as a prop
 }) {
   const router = useRouter();
   const [orders, setOrders] = useState([]);
@@ -45,10 +46,9 @@ export default function PanierPanneau({
       setOrders,
       orders,
       totalPriceInCart,
-      setCart,
       panier,
       setPanier,
-      toast
+      toast // pass toast down to the function
     );
   };
 
@@ -81,7 +81,6 @@ export default function PanierPanneau({
     </>
   );
 }
-
 export async function getServerSideProps(context) {
   // Get the cart from the request
   const { cart } = context.req.body;
