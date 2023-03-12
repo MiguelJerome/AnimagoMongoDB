@@ -180,6 +180,32 @@
   display: inline-block;
 }
 
+.cacher {
+  display: flex;
+  flex-direction: column;
+  max-width: 75rem;
+}
+
+.pV2 {
+  font-size: 25px;
+  color: rgb(254, 59, 0);
+  font-family: 'Helvetica';
+  font-weight: bold;
+}
+
+.headerCarousel {
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  height: -moz-fit-content;
+  height: fit-content;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
 @media (max-width: 550px) {
   .loginCart {
     width: 25px;
@@ -199,5 +225,9 @@
   .iconReseaux {
     width: 25px;
     min-width: 25px;
+  }
+
+  .cacher {
+    display: none;
   }
 }
