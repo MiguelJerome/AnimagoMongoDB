@@ -17,6 +17,8 @@ const MainTouteComponentPanier = ({
   getRemainingStock,
   getPurchaseQuantity,
   setCart,
+  totalPriceInCart,
+  totalItemPurchase,
 }) => {
   return (
     <Toggler visible>
@@ -36,6 +38,8 @@ const MainTouteComponentPanier = ({
             getRemainingStock={getRemainingStock}
             getPurchaseQuantity={getPurchaseQuantity}
             setCart={setCart}
+            totalPriceInCart={totalPriceInCart}
+            totalItemPurchase={totalItemPurchase}
           />
         </div>
         <PanierPanneauFooter router={router} />

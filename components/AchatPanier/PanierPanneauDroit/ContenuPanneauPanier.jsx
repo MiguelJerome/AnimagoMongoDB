@@ -2,6 +2,7 @@ import React from 'react';
 import ListeItemPanier from './ListeItemPanier';
 import PanierVideMessage from '/components/AchatPanier/PanierVideMessage';
 import TotalAchatParItemResultat from '/components/MagasinCalcul/TotalAchatParItemResultat';
+import SubmitCheckoutMain from '/components/AchatPanier/PanierPanneauDroit/CheckoutPanier/SubmitCheckoutMain';
 
 function ContenuPanneauPanier({
   cart,
@@ -14,18 +15,11 @@ function ContenuPanneauPanier({
   getRemainingStock,
   getPurchaseQuantity,
   setCart,
+  totalPriceInCart,
+  setOrders,
+  orders,
+  totalItemPurchase,
 }) {
-  /*
-  if (!cart || cart.length === 0) {
-  
-    const time = 3000;
-    setTimeout(() => {
-      location.reload();
-    }, time);
-
-    return <PanierVideMessage  />;
-  }
-*/
   return (
     <>
       <ListeItemPanier
@@ -39,6 +33,18 @@ function ContenuPanneauPanier({
         getRemainingStock={getRemainingStock}
         getPurchaseQuantity={getPurchaseQuantity}
         setCart={setCart}
+        totalPriceInCart={totalPriceInCart}
+        setOrders={setOrders}
+        orders={orders}
+        totalItemPurchase={totalItemPurchase}
+      />
+      <SubmitCheckoutMain
+        cart={cart}
+        setOrders={setOrders}
+        orders={orders}
+        totalPriceInCart={totalPriceInCart}
+        totalItemPurchase={totalItemPurchase}
+        submitCheckout={submitCheckout}
       />
     </>
   );

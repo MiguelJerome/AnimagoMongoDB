@@ -5,6 +5,7 @@ import GrandTotalItemResultat from './GrandTotalItemResultat';
 import CheckoutBtn from './CheckoutBtn';
 import PanierTitreMessage from './PanierTitreMessage';
 import TotalAchatParItemResultat from '/components/MagasinCalcul/TotalAchatParItemResultat';
+import SubmitCheckoutMain from '/components/AchatPanier/PanierPanneauDroit/CheckoutPanier/SubmitCheckoutMain';
 
 export default function ListeItemPanier(props) {
   const {
@@ -17,6 +18,9 @@ export default function ListeItemPanier(props) {
     getRemainingStock,
     getPurchaseQuantity,
     setCart,
+    totalPriceInCart,
+    setOrders,
+    totalItemPurchase,
   } = props;
 
   return (
@@ -29,17 +33,14 @@ export default function ListeItemPanier(props) {
         handleChange={handleChange}
         removeFromCart={removeFromCart}
         setCart={setCart}
+        totalPriceInCart={totalPriceInCart}
+        totalItemPurchase={totalItemPurchase}
       />
       <GrandTotalMontantResultat
         total={<TotalAchatParItemResultat cart={cart} />}
       />
       <div>
         <GrandTotalItemResultat calculateTotal={calculateTotal} />
-        <CheckoutBtn
-          submitCheckout={submitCheckout}
-          calculateTotal={calculateTotal}
-          total={<TotalAchatParItemResultat cart={cart} />}
-        />
       </div>
     </>
   );

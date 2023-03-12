@@ -4,8 +4,18 @@ import CheckoutPanier from '/public/img/cart.png';
 import styles from '/styles/Cart.module.css';
 import GrandTotalItemResultat from '/components/AchatPanier/PanierPanneauDroit/GrandTotalItemResultat';
 import { toast } from 'react-toastify';
+import SubmitCheckoutMain from '/components/AchatPanier/PanierPanneauDroit/CheckoutPanier/SubmitCheckoutMain';
 
-const CheckoutBtn = ({ submitCheckout, calculateTotal, total }) => {
+const CheckoutBtn = ({
+  submitCheckout,
+  calculateTotal,
+  total,
+  cart,
+  setOrders,
+  orders,
+  totalPriceInCart,
+  totalItemPurchase,
+}) => {
   function handleClick() {
     if (
       typeof calculateTotal === 'function' &&
@@ -23,20 +33,31 @@ const CheckoutBtn = ({ submitCheckout, calculateTotal, total }) => {
   }
 
   return (
-    <button className={styles.boutonCheckout} onClick={handleClick}>
-      <Image
-        src={CheckoutPanier}
-        alt={'Checkout Panier' || 'Default Image'}
-        priority={true}
-        className={styles.imgCheckout}
+    <>
+      <button className={styles.boutonCheckout} onClick={handleClick}>
+        <Image
+          src={CheckoutPanier}
+          alt={'Checkout Panier' || 'Default Image'}
+          priority={true}
+          className={styles.imgCheckout}
+        />
+        <p className={styles.checkoutLabel}>Grand Total</p>
+        <p className={styles.checkoutLabel}>${total}</p>
+        <p className={styles.checkoutLabel}>
+          {<GrandTotalItemResultat calculateTotal={calculateTotal} />}
+        </p>
+        <p className={styles.checkoutLabel}>Régler la note</p>
+      </button>
+      <SubmitCheckoutMain
+        onClick={handleClick}
+        cart={cart}
+        setOrders={setOrders}
+        orders={orders}
+        submitCheckout={submitCheckout}
+        totalPriceInCart={totalPriceInCart}
+        totalItemPurchase={totalItemPurchase}
       />
-      <p className={styles.checkoutLabel}>Grand Total</p>
-      <p className={styles.checkoutLabel}>${total}</p>
-      <p className={styles.checkoutLabel}>
-        {<GrandTotalItemResultat calculateTotal={calculateTotal} />}
-      </p>
-      <p className={styles.checkoutLabel}>Régler la note</p>
-    </button>
+    </>
   );
 };
 

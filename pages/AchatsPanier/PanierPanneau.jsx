@@ -20,12 +20,9 @@ export default function PanierPanneau({
   const router = useRouter();
   const [orders, setOrders] = useState([]);
   const [totalPriceInCart, setTotalPriceInCart] = useState(0);
-  //const panier = props.panier || null;
-  /*
-  useEffect(() => {
-    initCart();
-  }, []);
-*/
+  const [totalItemPurchase, setTotalItemPurchase] = useState(0);
+  const [panier, setPanier] = useState([]);
+
   useEffect(() => {
     calcTotal();
   }, [cart]);
@@ -79,14 +76,17 @@ export default function PanierPanneau({
 
   const calcTotal = () => {
     let sum = 0;
+    let totalItemPurchase = 0;
     if (cart) {
       cart.forEach((item) => {
         if (parseFloat(item.price) && parseFloat(item.purchaseQuantity)) {
           sum += parseFloat(item.price) * parseFloat(item.purchaseQuantity);
+          totalItemPurchase += parseInt(item.purchaseQuantity);
         }
       });
     }
     setTotalPriceInCart(parseFloat(sum.toFixed(2)));
+    setTotalItemPurchase(totalItemPurchase);
   };
 
   const submitCheckout = async () => {
@@ -126,13 +126,23 @@ export default function PanierPanneau({
           setCart={setCart}
           getRemainingStock={getRemainingStock}
           getPurchaseQuantity={getPurchaseQuantity}
-        />
-        <SubmitCheckoutMain
-          cart={cart}
           setOrders={setOrders}
           orders={orders}
           totalPriceInCart={totalPriceInCart}
-        />
+          totalItemPurchase={totalItemPurchase}
+        >
+          <SubmitCheckoutMain
+            cart={cart}
+            setOrders={setOrders}
+            orders={orders}
+            totalPriceInCart={totalPriceInCart}
+            totalItemPurchase={totalItemPurchase}
+            submitCheckout={submitCheckout}
+            panier={cart} // Pass the panier variable as a prop
+            setCart={setCart}
+            setPanier={setPanier} // Pass the setPanier function as a prop
+          />
+        </MainTouteComponentPanier>
       </div>
     </>
   );
