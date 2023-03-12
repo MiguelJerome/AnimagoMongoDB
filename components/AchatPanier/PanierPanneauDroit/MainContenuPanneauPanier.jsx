@@ -11,7 +11,6 @@ const MainTouteComponentPanier = (props) => {
     router,
     submitCheckout,
     addToCart,
-    toggler,
     getRemainingStock,
     getPurchaseQuantity,
     setCart,

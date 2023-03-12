@@ -37,9 +37,6 @@ function ContenuPanneauPanier({
         totalItemPurchase={totalItemPurchase}
       />
       <SubmitCheckoutMain
-        cart={cart}
-        setOrders={setOrders}
-        orders={orders}
         totalPriceInCart={totalPriceInCart}
         totalItemPurchase={totalItemPurchase}
         submitCheckout={submitCheckout}

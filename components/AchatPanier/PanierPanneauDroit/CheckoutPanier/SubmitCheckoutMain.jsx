@@ -21,7 +21,7 @@ function SubmitCheckoutMain({
       <p className={styles.checkoutLabel}>Grand Total</p>
       <p className={styles.checkoutLabel}>${totalPriceInCart}</p>
       <p className={styles.checkoutLabel}>
-        {<GrandTotalItemResultat calculateTotal={totalItemPurchase} />}
+        {<GrandTotalItemResultat totalItemPurchase={totalItemPurchase} />}
       </p>
       <p className={styles.checkoutLabel}>Régler la note</p>
     </button>

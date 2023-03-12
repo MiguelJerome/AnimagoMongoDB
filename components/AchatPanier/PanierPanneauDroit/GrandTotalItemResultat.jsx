@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function GrandTotalItemResultat({ calculateTotal }) {
-  return <strong>Total item: {calculateTotal}</strong>;
+export default function GrandTotalItemResultat({ totalItemPurchase }) {
+  return <strong>Total item: {totalItemPurchase}</strong>;
 }
