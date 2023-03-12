@@ -5,6 +5,10 @@ import MainTouteComponentPanier from '/components/AchatPanier/PanierPanneauDroit
 import styles from '/styles/Header.module.css';
 import { savePanierServerSideProps } from '/components/ServerProps/savePanierServerSideProps';
 import SubmitCheckoutMain from '/components/AchatPanier/PanierPanneauDroit/CheckoutPanier/SubmitCheckoutMain';
+import {
+  calcTotal,
+  submitCheckout,
+} from '/components/AchatPanier/PanierLogic/PanierLogic';
 
 export default function PanierPanneau({
   props,
@@ -24,7 +28,7 @@ export default function PanierPanneau({
   const [panier, setPanier] = useState([]);
 
   useEffect(() => {
-    calcTotal();
+    calcTotal(cart, setTotalPriceInCart, setTotalItemPurchase);
   }, [cart]);
 
   useEffect(() => {
@@ -74,42 +78,17 @@ export default function PanierPanneau({
     }
   };
 
-  const calcTotal = () => {
-    let sum = 0;
-    let totalItemPurchase = 0;
-    if (cart) {
-      cart.forEach((item) => {
-        if (parseFloat(item.price) && parseFloat(item.purchaseQuantity)) {
-          sum += parseFloat(item.price) * parseFloat(item.purchaseQuantity);
-          totalItemPurchase += parseInt(item.purchaseQuantity);
-        }
-      });
-    }
-    setTotalPriceInCart(parseFloat(sum.toFixed(2)));
-    setTotalItemPurchase(totalItemPurchase);
-  };
-
-  const submitCheckout = async () => {
-    if (totalPriceInCart <= 0) {
-      toast.warning(
-        'Votre panier est actuellement vide. Pour pouvoir effectuer une commande, veuillez ajouter des produits à votre panier.',
-        {
-          hideProgressBar: true,
-          autoClose: 2000,
-          type: 'warning',
-          position: 'bottom-right',
-        }
-      );
-      return;
-    }
-
-    const productIds = [];
-    cart.forEach((item) => {
-      for (let i = 0; i < Number.isInteger(item.purchaseQuantity); i++) {
-        productIds.push(item._id);
-      }
-    });
-    setOrders([...orders, cart]);
+  const handleCheckout = async () => {
+    submitCheckout(
+      cart,
+      setOrders,
+      orders,
+      totalPriceInCart,
+      setCart,
+      panier,
+      setPanier,
+      toast
+    );
   };
 
   return (
@@ -120,7 +99,7 @@ export default function PanierPanneau({
           handleChange={handleChange}
           removeFromCart={removeFromCart}
           router={router}
-          submitCheckout={submitCheckout}
+          submitCheckout={handleCheckout}
           addToCart={addToCart}
           toggler={toggler}
           setCart={setCart}
@@ -137,7 +116,7 @@ export default function PanierPanneau({
             orders={orders}
             totalPriceInCart={totalPriceInCart}
             totalItemPurchase={totalItemPurchase}
-            submitCheckout={submitCheckout}
+            submitCheckout={handleCheckout}
             panier={cart} // Pass the panier variable as a prop
             setCart={setCart}
             setPanier={setPanier} // Pass the setPanier function as a prop
