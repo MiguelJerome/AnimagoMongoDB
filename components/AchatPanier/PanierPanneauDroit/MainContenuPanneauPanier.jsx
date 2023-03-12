@@ -2,8 +2,6 @@ import React from 'react';
 import styles from '/styles/Cart.module.css';
 import ContenuPanneauPanier from '/components/AchatPanier/PanierPanneauDroit/ContenuPanneauPanier';
 import TotalAchatQuantite from '/components/MagasinCalcul/TotalAchatQuantite';
-import TotalAchatParItemResultat from '/components/MagasinCalcul/TotalAchatParItemResultat';
-import SubmitCheckoutMain from '/components/AchatPanier/PanierPanneauDroit/CheckoutPanier/SubmitCheckoutMain';
 
 const MainTouteComponentPanier = (props) => {
   const {

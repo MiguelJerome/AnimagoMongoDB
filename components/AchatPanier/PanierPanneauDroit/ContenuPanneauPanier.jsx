@@ -1,7 +1,5 @@
 import React from 'react';
 import ListeItemPanier from './ListeItemPanier';
-import PanierVideMessage from '/components/AchatPanier/PanierVideMessage';
-import TotalAchatParItemResultat from '/components/MagasinCalcul/TotalAchatParItemResultat';
 import SubmitCheckoutMain from '/components/AchatPanier/PanierPanneauDroit/CheckoutPanier/SubmitCheckoutMain';
 
 function ContenuPanneauPanier({

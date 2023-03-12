@@ -9,12 +9,16 @@ import {
   calcTotal,
   submitCheckout,
 } from '/components/AchatPanier/PanierLogic/PanierLogic';
+import {
+  handleOrder,
+  handleChange,
+} from '/components/AchatPanier/PanierLogic/PanierOrderLogic';
+
+//import { useAllPanierLogic } from '/components/AchatPanier/PanierLogic/usePanierAllLogic';
 
 export default function PanierPanneau({
-  props,
   toggler,
   cart,
-  initCart,
   addToCart,
   removeFromCart,
   setCart,
@@ -31,51 +35,10 @@ export default function PanierPanneau({
     calcTotal(cart, setTotalPriceInCart, setTotalItemPurchase);
   }, [cart]);
 
-  useEffect(() => {
-    if (orders.length > 0) {
-      toast.success(
-        `${`      Merci d'avoir acheté chez Animago ! Nous apprécions votre confiance en nos produits et services.
-      Votre commande a bien été prise en compte et le montant total de votre achat est de $${totalPriceInCart}.
-      Nous espérons que vous êtes satisfait de votre achat et nous espérons vous revoir bientôt chez Animago pour de nouveaux achats.`}`,
-        {
-          hideProgressBar: true,
-          autoClose: 3500,
-          type: 'success',
-          position: 'top-center',
-        }
-      );
-      setCart([]);
-      setOrders([]);
-      router.push({
-        pathname: '/AchatsPanier/HistoriqueCommande',
-        query: { orders: JSON.stringify(orders) },
-      });
-    }
-  }, [orders]);
+  handleOrder(orders, setCart, setOrders, totalPriceInCart, router);
 
-  const handleChange = (item, value) => {
-    if (Number.isInteger(value)) {
-      const updatedCart = [...cart];
-      const itemIndex = updatedCart.findIndex((i) => i._id === item._id);
-      if (itemIndex !== -1) {
-        const updatedItem = {
-          ...updatedCart[itemIndex],
-          purchaseQuantity: Math.max(
-            Math.min(
-              parseInt(value, 10),
-              updatedCart[itemIndex]?.stock || getPurchaseQuantity(item._id)
-            ),
-            0
-          ),
-        };
-        const newCart = [
-          ...updatedCart.slice(0, itemIndex),
-          updatedItem,
-          ...updatedCart.slice(itemIndex + 1),
-        ];
-        setCart(newCart);
-      }
-    }
+  const handleCartChange = (item, value) => {
+    handleChange(item, value, cart, setCart, getPurchaseQuantity);
   };
 
   const handleCheckout = async () => {
@@ -96,7 +59,7 @@ export default function PanierPanneau({
       <div className={`${styles.rightPanel} ${toggler ? 'active' : ''}`}>
         <MainTouteComponentPanier
           cart={cart}
-          handleChange={handleChange}
+          handleChange={handleCartChange}
           removeFromCart={removeFromCart}
           router={router}
           submitCheckout={handleCheckout}
