@@ -172,8 +172,10 @@ export default function Header() {
                     />
                   </a>
                   <div>
+                    <p className={styles.welcomeText}>Bienvenue,</p>
                     <p className={styles.welcomeText}>
-                      Bienvenue, {firstName} {lastName}!
+                      {`${firstName}
+                      ${lastName}!`}
                     </p>
                     <a className={styles.aLogin} onClick={logout}>
                       Deconnexion

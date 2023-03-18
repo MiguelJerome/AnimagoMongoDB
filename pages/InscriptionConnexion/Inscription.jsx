@@ -241,7 +241,10 @@ export default function Inscription({ users }) {
                   regex="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
                 />
                 <BoutonReset handleFormReset={handleFormReset} />
-                <BoutonInscription handleFormSubmit={handleFormSubmit} />
+                <BoutonInscription
+                  handleFormSubmit={handleFormSubmit}
+                  disabled={false}
+                />
                 {errorMessage && (
                   <div className={styles.errorText}>{errorMessage}</div>
                 )}

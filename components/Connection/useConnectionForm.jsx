@@ -1,69 +1,87 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export const useConnectionForm = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+const useInscriptionForm = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const checkFormValidity = () => {
+    const nameRegex = /^[a-zA-Z\s]{2,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
+    setIsFormValid(
+      nameRegex.test(firstName) &&
+        nameRegex.test(lastName) &&
+        emailRegex.test(email) &&
+        passwordRegex.test(password) &&
+        password === confirmPassword
+    );
   };
 
-  const validatePassword = (password) => {
-    const re = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z])$/;
-    return re.test(password);
+  useEffect(() => {
+    checkFormValidity();
+  }, [firstName, lastName, email, password, confirmPassword]);
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-
-    if (name === 'email') {
-      const isValid = validateEmail(value);
-
-      if (!isValid) {
-        setErrorMessage('Votre email est invalide');
-      } else {
-        setErrorMessage('');
-      }
-    } else if (name === 'password') {
-      const isValid = validatePassword(value);
-
-      if (!isValid) {
-        setErrorMessage('Votre mot de passe est invalide');
-      } else {
-        setErrorMessage('');
-      }
-    } else if (!value.length) {
-      setErrorMessage(`${name} est requis.`);
-    } else {
-      setErrorMessage('');
-    }
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
-    if (!errorMessage) {
-      console.log('Form data:', formData);
-      setFormData({ email: '', password: '' });
-    }
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const formData = {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    };
+    console.log(formData); // Replace with your form submission logic
+  };
+
+  const handleFormReset = (event) => {
+    event.preventDefault();
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
   };
 
   return {
-    formData,
-    errorMessage,
-    handleChange,
-    handleSubmit,
+    firstName,
+    handleFirstNameChange,
+    lastName,
+    handleLastNameChange,
+    email,
+    handleEmailChange,
+    password,
+    handlePasswordChange,
+    confirmPassword,
+    handleConfirmPasswordChange,
+    handleFormSubmit,
+    handleFormReset,
+    isFormValid,
   };
 };
 
-export default useConnectionForm;
+export default useInscriptionForm;

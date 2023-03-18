@@ -9,7 +9,7 @@ import Prenom from '/components/Inscription/Prenom';
 import Nom from '/components/Inscription/Nom';
 import Password from '/components/Connection/Password';
 import Email from '/components/Connection/Email';
-import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
+import { saveUserServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -112,7 +112,9 @@ export default function Inscription({ users }) {
       setPassword('');
       setConfirmPassword('');
       setErrorMessage('');
-      // await saveUserServerSideProps(userData._id, userData);
+      await saveUserServerSideProps(userData._id, {
+        serverSideProps: userData,
+      });
       toast.success(
         `Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
         {
@@ -158,11 +160,10 @@ export default function Inscription({ users }) {
     });
   };
 
-  const logout = () => {
+  const logout = (event) => {
     localStorage.removeItem('token-info');
     localStorage.setItem('isLoggedin', 'false');
     setIsLoggedin(false);
-    event.preventDefault();
     setEmail('');
     setFirstName('');
     setLastName('');
@@ -178,6 +179,7 @@ export default function Inscription({ users }) {
         position: toast.POSITION.TOP_LEFT,
       }
     );
+    event.preventDefault();
   };
 
   return (
@@ -241,7 +243,10 @@ export default function Inscription({ users }) {
                   regex="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
                 />
                 <BoutonReset handleFormReset={handleFormReset} />
-                <BoutonInscription handleFormSubmit={handleFormSubmit} />
+                <BoutonInscription
+                  handleFormSubmit={handleFormSubmit}
+                  disabled={false}
+                />
                 {errorMessage && (
                   <div className={styles.errorText}>{errorMessage}</div>
                 )}
@@ -283,4 +288,4 @@ export default function Inscription({ users }) {
   );
 }
 
-export { getUsersServerSideProps as getServerSideProps };
+export { saveUserServerSideProps as getServerSideProps };

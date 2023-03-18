@@ -29,7 +29,8 @@ Nom.propTypes = {
   lastName: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   errorMessage: PropTypes.string.isRequired,
-  regex: PropTypes.string.isRequired,
+  regex: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)])
+    .isRequired,
 };
 
 export default Nom;

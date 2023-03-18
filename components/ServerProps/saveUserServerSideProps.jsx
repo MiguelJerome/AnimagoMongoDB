@@ -1,15 +1,11 @@
-import { init, users } from '/server/config/mongo/users';
+import { saveUsers } from '/server/config/mongo/users';
 
-export async function saveUserServerSideProps(
-  userId = generateId(),
-  serverSideProps
-) {
+export async function saveUsersServerSideProps(userId = generateId(), user) {
   try {
-    if (!users) await init();
-
+    const { users } = await saveUsers();
     const result = await users.updateOne(
       { _id: userId },
-      { $set: { serverSideProps } }
+      { $set: { serverSideProps: user } }
     );
     if (result.modifiedCount === 0) {
       return {
