@@ -11,7 +11,6 @@ import BoutonReset from 'components/Connection/BoutonReset';
 import BoutonConnexion from '/components/Connection/BoutonConnexion';
 import Password from '/components/Connection/Password';
 import Email from '/components/Connection/Email';
-import useConnectionForm from '/components/Connection/useConnectionForm';
 
 export default function Connexion({ users }) {
   const [usersServerSide, setusersServerSide] = useState(users || []);
@@ -44,13 +43,19 @@ export default function Connexion({ users }) {
       return;
     }
     if (account && account.password === password) {
-      const userData = { email, password };
+      setFirstName(account.firstName);
+      setLastName(account.lastName);
+      const userData = {
+        email,
+        password,
+        firstName: account.firstName,
+        lastName: account.lastName,
+      };
       localStorage.setItem('token-info', JSON.stringify(userData));
       localStorage.setItem('isLoggedin', 'true');
       setIsLoggedin(true);
-      setFirstName(account.firstName);
-      setLastName(account.lastName);
       setEmail(account.email);
+
       setPassword('');
       setErrorMessage('');
       toast.success(
@@ -89,10 +94,15 @@ export default function Connexion({ users }) {
       position: toast.POSITION.TOP_LEFT,
     });
   };
-  const logout = () => {
+  const logout = (event) => {
     localStorage.removeItem('token-info');
     localStorage.setItem('isLoggedin', 'false');
     setIsLoggedin(false);
+    setEmail('');
+    setFirstName('');
+    setLastName('');
+    setPassword('');
+    setErrorMessage('');
     toast.success(
       `Félicitations ! Vous avez été déconnecté avec succès de Animago. N'hésitez pas à revenir pour découvrir de nouveaux contenus exclusifs et rester en contact avec notre communauté passionnée.`,
       {
@@ -102,6 +112,7 @@ export default function Connexion({ users }) {
         position: toast.POSITION.TOP_LEFT,
       }
     );
+    event.preventDefault();
   };
 
   return (

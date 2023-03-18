@@ -18,6 +18,12 @@ export default function Header() {
   const [query, setQuery] = useState('');
   const router = useRouter();
 
+  let userInfo;
+  if (typeof window !== 'undefined') {
+    userInfo = localStorage.getItem('token-info');
+  }
+  const { firstName, lastName } = userInfo ? JSON.parse(userInfo) : {};
+
   const [isLoggedin, setIsLoggedin] = useState();
   useEffect(() => {
     if (localStorage.getItem('token-info') !== null) {
@@ -166,6 +172,9 @@ export default function Header() {
                     />
                   </a>
                   <div>
+                    <p className={styles.welcomeText}>
+                      Bienvenue, {firstName} {lastName}!
+                    </p>
                     <a className={styles.aLogin} onClick={logout}>
                       Deconnexion
                     </a>
