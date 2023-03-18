@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(254, 59, 0);
+  background-color: rgb(252, 126, 0);
 }
 
 .footer a {
@@ -61,7 +61,7 @@
   cursor: pointer;
   font-size: 1.7rem;
   font-weight: bold;
-  background-color: rgb(254, 59, 0);
+  background-color: rgb(252, 126, 0);
   border: none;
   transition: background-color 0.3s ease;
   padding: 0.2rem;
@@ -71,7 +71,7 @@
 }
 
 .menuFooterList:hover {
-  background: linear-gradient(to bottom, #ff8a00, #ff4c00);
+  background: linear-gradient(to bottom, #ff7b00, #ff4c00);
 }
 
 .h3 {

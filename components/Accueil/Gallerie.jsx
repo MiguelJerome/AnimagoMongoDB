@@ -9,8 +9,12 @@ function Gallerie({ images, toggler }) {
   return (
     <div className={styles.gallerie}>
       {images.map((imageData, index) => (
-        <div key={index} className={styles.container}>
+        <div 
+          key={index} 
+          className={styles.container}
+          onClick={() => router.push(imageData.page)}>
           <Image
+            className={styles.img}
             src={imageData.src}
             alt={
               imageData.alt || imageData.name
@@ -22,12 +26,6 @@ function Gallerie({ images, toggler }) {
             priority={true}
           />
           <p className={styles.text}>{imageData.categorie}</p>
-          <button
-            className={styles.button}
-            onClick={() => router.push(imageData.page)}
-          >
-            Achetez maintenant
-          </button>
         </div>
       ))}
     </div>

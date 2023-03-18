@@ -1,94 +1,70 @@
 import { Inter } from '@next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 import styles from '/styles/Inscription.module.css';
-import BoutonReset from 'components/Connection/BoutonReset';
-import BoutonConnexion from '/components/Connection/BoutonConnexion';
-import { getUsersAndSaveUsersServerSideProps } from 'components/ServerProps/getUsersAndSaveUsersServerSideProps';
-import Email from '/components/Connection/Email';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+//import { getUsers } from '/server/config/mongo/users';
+import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Inscription({ users }) {
-  const [usersServerSide, setUsersServerSide] = useState(users || []);
+  const [usersServerSide, setusersServerSide] = useState(users || []);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const router = useRouter();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState();
 
-  const router = useRouter();
-
-  const handleChangePassword = (e) => {
+  // const { formData, errorMessage, handleChange, handleSubmit } =
+  //   useConnectionForm();
+  const handleChange = (e) => {
     setPassword(e.target.value);
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const account = usersServerSide.find((user) => user.email === email);
-      if (account) {
-        setErrorMessage(
-          `Les informations correspondent à un compte déjà existant.`
-        );
-        toast.error(
-          `Les informations correspondent à un compte déjà existant.`,
-          {
-            hideProgressBar: true,
-            autoClose: 2000,
-            type: 'error',
-            position: 'bottom-center',
-          }
-        );
-        return;
-      }
-      if (!account && confirmPassword === password) {
-        const userData = { lastName, firstName, email, password };
-        const saveResult = await saveUser(userData); // Save the user data
-        if (!saveResult.success) {
-          console.error(saveResult.error); // Log the error
-          throw new Error(saveResult.error);
+    const account = usersServerSide.find((user) => user.email === email);
+    if (account) {
+      setErrorMessage(`Les informations correspond a un compte déjà existant.`);
+      toast.error(`Les informations correspond a un compte déjà existant.`, {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: 'bottom-center',
+      });
+      return;
+    }
+    if (!account && confirmPassword === password) {
+      const userData = { email, password };
+      localStorage.setItem('token-info', JSON.stringify(userData));
+      localStorage.setItem('isLoggedin', 'true');
+      setIsLoggedin(true);
+      setFirstName(account.firstName);
+      setLastName(account.lastName);
+      setEmail(account.email);
+      setPassword('');
+      setErrorMessage('');
+      toast.success(
+        `Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
+        {
+          hideProgressBar: true,
+          autoClose: 5000,
+          type: 'success',
+          position: 'bottom-center',
         }
-        localStorage.setItem('token-info', JSON.stringify(userData));
-        localStorage.setItem('isLoggedin', 'true');
-        setIsLoggedin(true);
-        setUsersServerSide([...usersServerSide, userData]);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setEmail(email);
-        setPassword('');
-        setConfirmPassword('');
-        setErrorMessage('');
-        toast.success(
-          `Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
-          {
-            hideProgressBar: true,
-            autoClose: 5000,
-            type: 'success',
-            position: 'bottom-center',
-          }
-        );
-      } else if (confirmPassword !== password) {
-        setErrorMessage(
-          'Le mot de passe ne correspond pas à celui que vous avez confirmé.'
-        );
-        toast.error(
-          'Le mot de passe ne correspond pas à celui que vous avez confirmé.',
-          {
-            hideProgressBar: true,
-            autoClose: 2000,
-            type: 'error',
-            position: 'bottom-center',
-          }
-        );
-      }
-    } catch (error) {
-      console.error(error); // Log the error
-      setErrorMessage('Failed to save user');
+      );
+    } else if (confirmPassword !== password){
+      setErrorMessage('Le mot de passe ne correspond pas a celui que vous avez confirmé.');
+      toast.error('Le mot de passe ne correspond pas a celui que vous avez confirmé.', {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: 'bottom-center',
+      });
     }
   };
 
@@ -99,19 +75,15 @@ export default function Inscription({ users }) {
   const handleFormReset = (event) => {
     event.preventDefault();
     setEmail('');
-    setFirstName('');
-    setLastName('');
     setPassword('');
-    setConfirmPassword('');
     setErrorMessage('');
-    toast.success('Formulaire Inscription effacé.', {
+    toast.success('Formulaire Connexion effacé.', {
       hideProgressBar: true,
       autoClose: 2000,
       type: 'success',
       position: 'bottom-center',
     });
   };
-
   const logout = () => {
     localStorage.removeItem('token-info');
     localStorage.setItem('isLoggedin', 'false');
@@ -152,10 +124,8 @@ export default function Inscription({ users }) {
                   ← Aller à Connexionn
                 </button>
               </div>
-              <form
-                className={styles.formAuthentificationWrapper}
-                onReset={handleFormReset}
-              >
+              <form className={styles.formAuthentificationWrapper}
+              onReset={handleFormReset}>
                 <div className={styles.title}>
                   <h2>Inscription</h2>
                 </div>
@@ -229,12 +199,20 @@ export default function Inscription({ users }) {
                     required
                   />
                 </div>
-
-                <BoutonReset />
-                <BoutonConnexion handleFormSubmit={handleFormSubmit} />
-                {errorMessage && (
-                  <div className={styles.errorText}>{errorMessage}</div>
-                )}
+                <div className={styles.promptWrapper}>
+                  <button type="reset" className={styles.btnAuthentification}>
+                    Reset
+                  </button>
+                </div>
+                <div className={styles.promptWrapper}>
+                  <button
+                    type="submit"
+                    onClickCapture={login}
+                    className={styles.btnAuthentification}
+                  >
+                    S'inscrire
+                  </button>
+                </div>
               </form>
             </>
           ) : (
@@ -271,4 +249,17 @@ export default function Inscription({ users }) {
   );
 }
 
-export { getUsersAndSaveUsersServerSideProps as getServerSideProps };
+export { getUsersServerSideProps as getServerSideProps };
+/*
+export async function getServerSideProps() {
+  const { users } = await getUsers();
+  if (!users) throw new Error('Failed to fetch users');
+  // Convert the _id property of each user to a string
+  const usersStringified = users.map((user) => ({
+    ...user,
+    _id: user._id.toString(),
+    commandes: JSON.stringify(user.commandes),
+  }));
+  return { props: { usersServer: usersStringified } };
+}
+*/

@@ -17,11 +17,18 @@
 .container {
   display: flex;
   justify-content: center;
+  margin: .7rem;
+}
+
+.container:hover{
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .text {
-  font-size: 30px;
-  color: aliceblue;
+  font-size: 35px;
+  color: rgb(255, 247, 240);
   -webkit-text-stroke: 1px rgb(0, 0, 0);
   font-weight: bolder;
   margin: 0.5rem;
