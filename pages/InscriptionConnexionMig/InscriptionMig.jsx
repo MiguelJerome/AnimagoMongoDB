@@ -58,6 +58,7 @@ export default function Inscription({ users }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    setErrorMessage('');
     const account = usersServerSide.find((user) => user.email === email);
     if (account) {
       setErrorMessage(`Les informations correspond a un compte déjà existant.`);
@@ -68,10 +69,23 @@ export default function Inscription({ users }) {
         position: toast.POSITION.TOP_LEFT,
       });
       return;
+    } else if (confirmPassword !== password) {
+      setErrorMessage(
+        'Le mot de passe ne correspond pas a celui que vous avez confirmé.'
+      );
+      toast.error(
+        'Le mot de passe ne correspond pas a celui que vous avez confirmé.',
+        {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: 'error',
+          position: toast.POSITION.TOP_LEFT,
+        }
+      );
     }
     checkFormValidity(); // add this line to check if the form is valid
     if (!isFormValid) {
-      setErrorMessage('Veuillez remplir tous les champs correctement.');
+      //setErrorMessage('Veuillez remplir tous les champs correctement.');
       toast.error('Veuillez remplir tous les champs correctement.', {
         hideProgressBar: true,
         autoClose: 2000,
@@ -84,9 +98,17 @@ export default function Inscription({ users }) {
       localStorage.setItem('token-info', JSON.stringify(userData));
       localStorage.setItem('isLoggedin', 'true');
       setIsLoggedin(true);
-      setFirstName('');
-      setLastName('');
-      setEmail('');
+      if (account) {
+        setFirstName(account.firstName);
+        setLastName(account.lastName);
+        setEmail(account.email);
+        setPassword('');
+      } else {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+      }
+
       setPassword('');
       setConfirmPassword('');
       setErrorMessage('');
@@ -140,6 +162,13 @@ export default function Inscription({ users }) {
     localStorage.removeItem('token-info');
     localStorage.setItem('isLoggedin', 'false');
     setIsLoggedin(false);
+    event.preventDefault();
+    setEmail('');
+    setFirstName('');
+    setLastName('');
+    setPassword('');
+    setConfirmPassword('');
+    setErrorMessage('');
     toast.success(
       `Félicitations ! Vous avez été déconnecté avec succès de Animago. N'hésitez pas à revenir pour découvrir de nouveaux contenus exclusifs et rester en contact avec notre communauté passionnée.`,
       {
@@ -231,8 +260,10 @@ export default function Inscription({ users }) {
               <div className={styles.title}>
                 <h2>Déconnexion?</h2>
                 <label className={styles.label}>
-                  Oups! On dirais que vous etes déjà connecter. Voulez-vous vous
-                  déconnecter ou retourner a l'accueil?
+                  Oups! On dirais que vous êtes déjà connecté(e),
+                  {` ${firstName} 
+                  ${lastName} (${email})`}
+                  . Voulez-vous vous déconnecter ou retourner à l'accueil?
                 </label>
               </div>
               <div className={styles.promptWrapper}>
