@@ -62,14 +62,19 @@ export default function Inscription({ users }) {
           position: 'bottom-center',
         }
       );
-    } else if (confirmPassword !== password){
-      setErrorMessage('Le mot de passe ne correspond pas a celui que vous avez confirmé.');
-      toast.error('Le mot de passe ne correspond pas a celui que vous avez confirmé.', {
-        hideProgressBar: true,
-        autoClose: 2000,
-        type: 'error',
-        position: 'bottom-center',
-      });
+    } else if (confirmPassword !== password) {
+      setErrorMessage(
+        'Le mot de passe ne correspond pas a celui que vous avez confirmé.'
+      );
+      toast.error(
+        'Le mot de passe ne correspond pas a celui que vous avez confirmé.',
+        {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: 'error',
+          position: 'bottom-center',
+        }
+      );
     }
   };
 
@@ -132,10 +137,10 @@ export default function Inscription({ users }) {
                   ← Aller à Connexionn
                 </button>
               </div>
-            <form
-              className={styles.formAuthentificationWrapper}
-              onReset={handleFormReset}
-            >
+              <form
+                className={styles.formAuthentificationWrapper}
+                onReset={handleFormReset}
+              >
                 <div className={styles.title}>
                   <h2>Inscription</h2>
                 </div>
@@ -209,12 +214,12 @@ export default function Inscription({ users }) {
                     required
                   />
                 </div>
-                
-              <BoutonReset />
-              <BoutonConnexion handleFormSubmit={handleFormSubmit} />
-              {errorMessage && (
-                <div className={styles.errorText}>{errorMessage}</div>
-              )}
+
+                <BoutonReset />
+                <BoutonConnexion handleFormSubmit={handleFormSubmit} />
+                {errorMessage && (
+                  <div className={styles.errorText}>{errorMessage}</div>
+                )}
               </form>
             </>
           ) : (
@@ -252,16 +257,3 @@ export default function Inscription({ users }) {
 }
 
 export { getUsersServerSideProps as getServerSideProps };
-/*
-export async function getServerSideProps() {
-  const { users } = await getUsers();
-  if (!users) throw new Error('Failed to fetch users');
-  // Convert the _id property of each user to a string
-  const usersStringified = users.map((user) => ({
-    ...user,
-    _id: user._id.toString(),
-    commandes: JSON.stringify(user.commandes),
-  }));
-  return { props: { usersServer: usersStringified } };
-}
-*/

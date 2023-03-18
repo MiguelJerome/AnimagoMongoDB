@@ -39,7 +39,7 @@ export default function Connexion({ users }) {
         hideProgressBar: true,
         autoClose: 2000,
         type: 'error',
-        position: 'bottom-center',
+        position: toast.POSITION.TOP_LEFT,
       });
       return;
     }
@@ -59,7 +59,7 @@ export default function Connexion({ users }) {
           hideProgressBar: true,
           autoClose: 5000,
           type: 'success',
-          position: 'bottom-center',
+          position: toast.POSITION.TOP_LEFT,
         }
       );
     } else {
@@ -68,7 +68,7 @@ export default function Connexion({ users }) {
         hideProgressBar: true,
         autoClose: 2000,
         type: 'error',
-        position: 'bottom-center',
+        position: toast.POSITION.TOP_LEFT,
       });
     }
   };
@@ -86,7 +86,7 @@ export default function Connexion({ users }) {
       hideProgressBar: true,
       autoClose: 2000,
       type: 'success',
-      position: 'bottom-center',
+      position: toast.POSITION.TOP_LEFT,
     });
   };
   const logout = () => {
@@ -99,7 +99,7 @@ export default function Connexion({ users }) {
         hideProgressBar: true,
         autoClose: 4000,
         type: 'success',
-        position: 'bottom-center',
+        position: toast.POSITION.TOP_LEFT,
       }
     );
   };
