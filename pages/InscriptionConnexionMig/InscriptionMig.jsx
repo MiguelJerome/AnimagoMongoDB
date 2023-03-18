@@ -12,6 +12,7 @@ import Email from '/components/Connection/Email';
 import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 //import { useInscriptionForm } from '/components/Inscription/useInscriptionForm';
 
 import React, { useState, useEffect } from 'react';
@@ -89,6 +90,7 @@ export default function Inscription({ users }) {
       setPassword('');
       setConfirmPassword('');
       setErrorMessage('');
+      // await saveUserServerSideProps(userData._id, userData);
       toast.success(
         `Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
         {

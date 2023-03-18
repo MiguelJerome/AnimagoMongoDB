@@ -1,6 +1,9 @@
 import { init, users } from '/server/config/mongo/users';
 
-export async function saveUserServerSideProps(userId, serverSideProps) {
+export async function saveUserServerSideProps(
+  userId = generateId(),
+  serverSideProps
+) {
   try {
     if (!users) await init();
 
@@ -10,14 +13,22 @@ export async function saveUserServerSideProps(userId, serverSideProps) {
     );
     if (result.modifiedCount === 0) {
       return {
-        error: 'Failed to save server-side properties. User not found.',
+        props: {
+          error: 'Failed to save server-side properties. User not found.',
+        },
       };
     }
 
     return {
-      success: `Server-side properties for user with id ${userId} were successfully saved.`,
+      props: {
+        success: `Server-side properties for user with id ${userId} were successfully saved.`,
+      },
     };
   } catch (error) {
-    return { error: 'Failed to save server-side properties.' };
+    return {
+      props: {
+        error: 'Failed to save server-side properties.',
+      },
+    };
   }
 }
