@@ -3,17 +3,8 @@ import React, { useState } from 'react';
 import styles from '/styles/Inscription.module.css';
 
 const Prenom = ({ firstName, handleChange, errorMessage, regex }) => {
-  const [inputError, setInputError] = useState(true);
-
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    if (!RegExp(regex).test(value)) {
-      setInputError(true);
-    } else {
-      setInputError(false);
-    }
-    handleChange(e);
-  };
+  const prenomRegex = new RegExp(regex);
+  const isValidPrenom = prenomRegex.test(firstName);
 
   return (
     <div className={styles.promptWrapper}>
@@ -26,10 +17,12 @@ const Prenom = ({ firstName, handleChange, errorMessage, regex }) => {
         type="text"
         id="firstName"
         value={firstName}
-        onChange={handleInputChange}
-        className={`${styles.input} ${!inputError ? '' : styles.errorText}`}
+        onChange={handleChange}
+        className={`${styles.input} ${!isValidPrenom ? '' : styles.errorText}`}
       />
-      {inputError && <span className={styles.errorText}>{errorMessage}</span>}
+      {!isValidPrenom && (
+        <span className={styles.errorText}>{errorMessage}</span>
+      )}
     </div>
   );
 };

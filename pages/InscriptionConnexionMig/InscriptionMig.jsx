@@ -57,17 +57,6 @@ export default function Inscription({ users }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    checkFormValidity(); // add this line to check if the form is valid
-    if (!isFormValid) {
-      setErrorMessage('Veuillez remplir tous les champs correctement.');
-      toast.error('Veuillez remplir tous les champs correctement.', {
-        hideProgressBar: true,
-        autoClose: 2000,
-        type: 'error',
-        position: toast.POSITION.TOP_LEFT,
-      });
-      return;
-    }
     const account = usersServerSide.find((user) => user.email === email);
     if (account) {
       setErrorMessage(`Les informations correspond a un compte déjà existant.`);
@@ -79,7 +68,17 @@ export default function Inscription({ users }) {
       });
       return;
     }
-    if (!account && confirmPassword === password) {
+    checkFormValidity(); // add this line to check if the form is valid
+    if (!isFormValid) {
+      setErrorMessage('Veuillez remplir tous les champs correctement.');
+      toast.error('Veuillez remplir tous les champs correctement.', {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: 'error',
+        position: toast.POSITION.TOP_LEFT,
+      });
+      return;
+    } else if (!account && confirmPassword === password) {
       const userData = { lastName, firstName, email, password };
       localStorage.setItem('token-info', JSON.stringify(userData));
       localStorage.setItem('isLoggedin', 'true');
@@ -178,7 +177,6 @@ export default function Inscription({ users }) {
               <form
                 className={styles.formAuthentificationWrapper}
                 onReset={handleFormReset}
-                onSubmit={handleFormSubmit}
               >
                 <div className={styles.title}>
                   <h2>Inscription</h2>

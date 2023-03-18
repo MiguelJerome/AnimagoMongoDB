@@ -3,17 +3,8 @@ import React, { useState } from 'react';
 import styles from '/styles/Inscription.module.css';
 
 const Nom = ({ lastName, handleChange, errorMessage, regex }) => {
-  const [inputError, setInputError] = useState(true);
-
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    if (!RegExp(regex).test(value)) {
-      setInputError(true);
-    } else {
-      setInputError(false);
-    }
-    handleChange(e);
-  };
+  const nomRegex = new RegExp(regex);
+  const isValidNom = nomRegex.test(lastName);
 
   return (
     <div className={styles.promptWrapper}>
@@ -26,10 +17,10 @@ const Nom = ({ lastName, handleChange, errorMessage, regex }) => {
         type="text"
         id="lastName"
         value={lastName}
-        onChange={handleInputChange}
-        className={`${styles.input} ${!inputError ? '' : styles.errorText}`}
+        onChange={handleChange}
+        className={`${styles.input} ${!isValidNom ? '' : styles.errorText}`}
       />
-      {inputError && <span className={styles.errorText}>{errorMessage}</span>}
+      {!isValidNom && <span className={styles.errorText}>{errorMessage}</span>}
     </div>
   );
 };
@@ -37,6 +28,7 @@ const Nom = ({ lastName, handleChange, errorMessage, regex }) => {
 Nom.propTypes = {
   lastName: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
   regex: PropTypes.string.isRequired,
 };
 
