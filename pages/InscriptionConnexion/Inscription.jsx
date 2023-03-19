@@ -59,17 +59,22 @@ export default function Inscription({ users }) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage('');
+
+    // Check if the email already exists in the users list
     const account = usersServerSide.find((user) => user.email === email);
     if (account) {
-      setErrorMessage(`Les informations correspond a un compte déjà existant.`);
-      toast.error(`Les informations correspond a un compte déjà existant.`, {
+      setErrorMessage('Les informations correspond a un compte déjà existant.');
+      toast.error('Les informations correspond a un compte déjà existant.', {
         hideProgressBar: true,
         autoClose: 2000,
         type: 'error',
         position: toast.POSITION.TOP_LEFT,
       });
       return;
-    } else if (confirmPassword !== password) {
+    }
+
+    // Check if the password and confirm password match
+    if (confirmPassword !== password) {
       setErrorMessage(
         'Le mot de passe ne correspond pas a celui que vous avez confirmé.'
       );
@@ -82,10 +87,12 @@ export default function Inscription({ users }) {
           position: toast.POSITION.TOP_LEFT,
         }
       );
+      return;
     }
-    checkFormValidity(); // add this line to check if the form is valid
+
+    // Check if the form is valid
+    checkFormValidity();
     if (!isFormValid) {
-      //setErrorMessage('Veuillez remplir tous les champs correctement.');
       toast.error('Veuillez remplir tous les champs correctement.', {
         hideProgressBar: true,
         autoClose: 2000,
@@ -93,49 +100,28 @@ export default function Inscription({ users }) {
         position: toast.POSITION.TOP_LEFT,
       });
       return;
-    } else if (!account && confirmPassword === password) {
-      const userData = { lastName, firstName, email, password };
-      localStorage.setItem('token-info', JSON.stringify(userData));
-      localStorage.setItem('isLoggedin', 'true');
-      setIsLoggedin(true);
-      if (account) {
-        setFirstName(account.firstName);
-        setLastName(account.lastName);
-        setEmail(account.email);
-        setPassword('');
-      } else {
-        setFirstName(firstName);
-        setLastName(lastName);
-        setEmail(email);
-      }
-
-      setPassword('');
-      setConfirmPassword('');
-      setErrorMessage('');
-      // await saveUserServerSideProps(userData._id, userData);
-      toast.success(
-        `Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
-        {
-          hideProgressBar: true,
-          autoClose: 5000,
-          type: 'success',
-          position: toast.POSITION.TOP_LEFT,
-        }
-      );
-    } else if (confirmPassword !== password) {
-      setErrorMessage(
-        'Le mot de passe ne correspond pas a celui que vous avez confirmé.'
-      );
-      toast.error(
-        'Le mot de passe ne correspond pas a celui que vous avez confirmé.',
-        {
-          hideProgressBar: true,
-          autoClose: 2000,
-          type: 'error',
-          position: toast.POSITION.TOP_LEFT,
-        }
-      );
     }
+
+    // Save the user if the form is valid and passwords match
+    const userData = { lastName, firstName, email, password };
+    localStorage.setItem('token-info', JSON.stringify(userData));
+    localStorage.setItem('isLoggedin', 'true');
+    setIsLoggedin(true);
+    setFirstName(firstName);
+    setLastName(lastName);
+    setEmail(email);
+    setPassword('');
+    setConfirmPassword('');
+
+    toast.success(
+      'Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée',
+      {
+        hideProgressBar: true,
+        autoClose: 5000,
+        type: 'success',
+        position: toast.POSITION.TOP_LEFT,
+      }
+    );
   };
 
   useEffect(() => {

@@ -1,29 +1,26 @@
 import { saveUsers } from '/server/config/mongo/users';
 
-export async function saveUsersServerSideProps(userId = generateId(), user) {
+export async function saveUsersServerSideProps(user) {
   try {
     const { users } = await saveUsers();
-    const result = await users.updateOne(
-      { _id: userId },
-      { $set: { serverSideProps: user } }
-    );
-    if (result.modifiedCount === 0) {
+    const existingUser = await users.findOne({ username: user.username });
+    if (existingUser) {
       return {
         props: {
-          error: 'Failed to save server-side properties. User not found.',
+          error: 'User already exists!',
         },
       };
     }
 
     return {
       props: {
-        success: `Server-side properties for user with id ${userId} were successfully saved.`,
+        success: `User with id ${result.insertedId} was successfully saved.`,
       },
     };
   } catch (error) {
     return {
       props: {
-        error: 'Failed to save server-side properties.',
+        error: 'Failed to save user!',
       },
     };
   }
