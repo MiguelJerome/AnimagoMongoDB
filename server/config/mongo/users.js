@@ -31,12 +31,6 @@ export async function getUsers() {
 export async function saveUser(user) {
   try {
     if (!users) await init();
-
-    const existingUser = await users.findOne({ username: user.username });
-    if (existingUser) {
-      return { error: 'User already exists!' };
-    }
-
     const result = await users.insertOne(user);
     return {
       success: `User with id ${result.insertedId} was successfully saved.`,
