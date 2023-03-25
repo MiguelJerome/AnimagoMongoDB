@@ -1,4 +1,5 @@
 import { getUsers, saveUser } from '/server/config/mongo/users';
+import { createUser } from 'components/Inscription/createUser';
 
 export async function saveUserServerSideProps() {
   // Get the list of users
@@ -11,7 +12,8 @@ export async function saveUserServerSideProps() {
     password: 'Test11111',
     firstName: 'Jimmy',
     lastName: 'Clown',
-    commandes: [], // Assuming this is an empty array for a new user
+    commandes: [],
+    __v: 0,
   };
   const { success, error } = await saveUser(newUser);
 
