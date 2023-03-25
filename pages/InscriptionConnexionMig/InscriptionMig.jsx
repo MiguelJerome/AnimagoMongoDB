@@ -1,21 +1,16 @@
 import { Inter } from '@next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 import styles from '/styles/Inscription.module.css';
-//import { getUsers } from '/server/config/mongo/users';
 import ConfirmPassword from '/components/Inscription/ConfirmPassword';
 import BoutonReset from 'components/Inscription/BoutonReset';
-//import BoutonConnexion from '/components/Connection/BoutonConnexion';
 import Prenom from '/components/Inscription/Prenom';
 import Nom from '/components/Inscription/Nom';
 import Password from '/components/Connection/Password';
 import Email from '/components/Connection/Email';
-//import { getUsersServerSideProps } from '/components/ServerProps/getUsersServerSideProps';
 import { saveUserServerSideProps } from '/components/ServerProps/saveUserServerSideProps';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-//import { useInscriptionForm } from '/components/Inscription/useInscriptionForm';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -155,8 +150,6 @@ export default function Inscription({ users }) {
       setPassword('');
       setConfirmPassword('');
       setErrorMessage('');
-
-      // await saveUserServerSideProps(userData._id, userData);
       toast.success(
         `Félicitations ! Vous êtes maintenant inscrit à Animago. Profitez pleinement de notre plateforme pour découvrir nos contenus exclusifs et participer à notre communauté passionnée`,
         {
