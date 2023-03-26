@@ -11,7 +11,11 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Commande',
     },
+    {
+      orderString: { type: String },
+    },
   ],
+  orderString: { type: String }, // Add this field to the schema
 });
 
 let User;

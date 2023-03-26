@@ -21,6 +21,7 @@ export default function Connexion({ users }) {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [orderString, setOrderString] = useState('');
   const [isLoggedin, setIsLoggedin] = useState();
 
   // const { formData, errorMessage, handleChange, handleSubmit } =
@@ -45,11 +46,13 @@ export default function Connexion({ users }) {
     if (account && account.password === password) {
       setFirstName(account.firstName);
       setLastName(account.lastName);
+      setOrderString(account.orderString);
       const userData = {
         email,
         password,
         firstName: account.firstName,
         lastName: account.lastName,
+        orderString: account.orderString,
       };
       localStorage.setItem('token-info', JSON.stringify(userData));
       localStorage.setItem('isLoggedin', 'true');
@@ -102,6 +105,7 @@ export default function Connexion({ users }) {
     setFirstName('');
     setLastName('');
     setPassword('');
+    setOrderString('');
     setErrorMessage('');
     toast.success(
       `Félicitations ! Vous avez été déconnecté avec succès de Animago. N'hésitez pas à revenir pour découvrir de nouveaux contenus exclusifs et rester en contact avec notre communauté passionnée.`,
