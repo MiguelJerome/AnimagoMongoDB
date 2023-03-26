@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import styles from '/styles/Connexion.module.css';
 //import { getUsers } from '/server/config/mongo/users';
 import { useRouter } from 'next/router';

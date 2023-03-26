@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -7,8 +6,6 @@ import PanierPanneau from '@/pages/AchatsPanier/PanierPanneau';
 import styles from '/styles/ProduitListe.module.css';
 import { getPaniers } from '/server/config/mongo/paniers';
 import { useCart } from '/components/AchatPanier/UseCart.jsx';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function ToutMagasiner({ paniers }) {
   const [

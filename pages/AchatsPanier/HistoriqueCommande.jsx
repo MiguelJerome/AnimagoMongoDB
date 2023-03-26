@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 
-import { Inter } from "next/font/google";
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { useCart } from '/components/AchatPanier/UseCart.jsx';
 import OrderHistory from '/components/CommandeHIstorique/CommandeHIstorique.jsx';
 
 import styles from '/styles/Cart.module.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function HistoriqueCommande({ purchaseDate, orders }) {
   let userInfo;
