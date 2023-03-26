@@ -303,6 +303,7 @@ function Item117() {
     </a>
   );
 }
+/*
 const items = [
   <Item100 key={image100.src} />,
   <Item101 key={image101.src} />,
@@ -323,7 +324,7 @@ const items = [
   <Item116 key={image116.src} />,
   <Item117 key={image117.src} />,
 ];
-
+*/
 function Carousel() {
   return (
     <div className={styles.carouselImg} style={{ width: '80vw' }}>
