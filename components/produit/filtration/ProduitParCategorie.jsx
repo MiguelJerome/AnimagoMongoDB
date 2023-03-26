@@ -19,7 +19,7 @@ export default function ProduitParCategorie({
   //   getPurchaseQuantity,
   //   getRemainingStock
   // ] = Array.isArray(cartProps) ? cartProps : [];
-  console.log('ProduitParCategorie', JSON.stringify(paniers));
+  //console.log('ProduitParCategorie', JSON.stringify(paniers));
   const [
     cart,
     initCart,

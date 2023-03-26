@@ -17,7 +17,7 @@ export default function CommandeHistorique({
 
   const [total, setTotal] = useState(0);
   const { produitsState } = UpdateProductStockAndSetCart({ orders });
-
+  //console.log('Orders in string passing from the current cart', orders);
   let userInfo;
   if (typeof window !== 'undefined') {
     userInfo = localStorage.getItem('token-info');

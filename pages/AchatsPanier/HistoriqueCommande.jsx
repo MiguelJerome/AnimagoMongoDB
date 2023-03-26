@@ -20,7 +20,7 @@ export default function HistoriqueCommande({ purchaseDate, orders }) {
   const [orderHistory, setOrderHistory] = useState(orders);
   let cart = [];
 
-  //console.log("Orders in string passing from the current cart", orders);
+  // console.log('Orders in string passing from the current cart', orders);
 
   if (typeof orders === 'string') {
     try {
@@ -31,7 +31,7 @@ export default function HistoriqueCommande({ purchaseDate, orders }) {
   }
   // console.log("Cart in string ", cart);
 
-  // console.log("Order History in string ", orderHistory);
+  //console.log('Order History in string ', orderHistory);
   //console.log('Order History in string ', orderString);
   return (
     <>
