@@ -228,7 +228,7 @@ export default function Inscription({ users }) {
                   className={styles.button}
                   onClick={() => router.push('/Accueil')}
                 >
-                  ← Aller à l'accueil
+                  ← Aller à l&apos;accueil
                 </button>
               </div>
               <div className={styles.promptWrapper}>
@@ -294,7 +294,7 @@ export default function Inscription({ users }) {
                   className={styles.button}
                   onClick={() => router.push('/Accueil')}
                 >
-                  ← Aller à l'accueil
+                  ← Aller à l&apos;accueil
                 </button>
               </div>
               <div className={styles.title}>
@@ -303,7 +303,7 @@ export default function Inscription({ users }) {
                   Oups! On dirais que vous êtes déjà connecté(e),
                   {` ${firstName} 
                   ${lastName} (${email})`}
-                  . Voulez-vous vous déconnecter ou retourner à l'accueil?
+                  . Voulez-vous vous déconnecter ou retourner à l&apos;accueil?
                 </label>
               </div>
               <div className={styles.promptWrapper}>

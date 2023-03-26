@@ -29,7 +29,7 @@ export default function Profil({ users }) {
               className={styles.button}
               onClick={() => router.push('/Accueil')}
             >
-              ← Aller à l'accueil
+              ← Aller à l&apos;accueil
             </button>
           </div>
           <div className={styles.title}>

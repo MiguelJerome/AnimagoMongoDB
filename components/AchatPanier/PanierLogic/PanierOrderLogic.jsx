@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-export const handleOrder = (
+export const useHandleOrder = (
   orders,
   setCart,
   setOrders,

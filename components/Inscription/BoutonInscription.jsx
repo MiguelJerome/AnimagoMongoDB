@@ -10,7 +10,7 @@ const BoutonInscription = ({ handleFormSubmit, disabled }) => {
         onClick={handleFormSubmit}
         disabled={disabled}
       >
-        S'inscrire
+        S&apos;inscrire
       </button>
     </div>
   );

@@ -47,7 +47,7 @@ export default function ProduitDetails({ product }) {
               </p>
               <p className={styles.description}>{politiqueDescription}</p>
 
-              <p className={styles.subtitle}>INFORMATIONS D'EXPÉDITION</p>
+              <p className={styles.subtitle}>INFORMATIONS D&apos;EXPÉDITION</p>
               <p className={styles.description}>{expeditionDescription}</p>
             </div>
           </div>

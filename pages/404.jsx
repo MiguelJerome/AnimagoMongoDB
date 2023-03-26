@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Inter } from '@next/font/google';
 import styles from '../styles/NotFound.module.css';
 import { useRouter } from 'next/router';
@@ -6,12 +6,12 @@ import { toast } from 'react-toastify';
 
 export default function NotFound() {
   const router = useRouter();
-  const [NotFound, setNotFound] = useState(false);
-  let noOrdersFound = false;
+  const [notFound, setNotFound] = useState(false);
+  const noOrdersFoundRef = useRef(false);
 
   useEffect(() => {
-    if (!noOrdersFound) {
-      noOrdersFound = true;
+    if (!noOrdersFoundRef.current) {
+      noOrdersFoundRef.current = true;
       setNotFound(true);
       toast.error(
         'Nous avons regardé partout pour cette page ! Erreur 404 Page non trouvée',
@@ -25,7 +25,7 @@ export default function NotFound() {
     } else {
       setNotFound(false);
     }
-  });
+  }, []);
 
   return (
     <main>

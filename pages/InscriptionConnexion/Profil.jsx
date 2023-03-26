@@ -45,7 +45,7 @@ export default function Profil(usersServer) {
               className={styles.button}
               onClick={() => router.push('/Accueil')}
             >
-              ← Aller à l'accueil
+              ← Aller à l&apos;accueil
             </button>
           </div>
           <div className={styles.title}>
@@ -53,7 +53,7 @@ export default function Profil(usersServer) {
               {`Bonjour ${firstName} ${lastName},`}
             </label>
             <label className={styles.label}>
-              Vous êtes connecté avec l'adresse e-mail : {email}.
+              Vous êtes connecté avec l&apos;adresse e-mail : {email}.
             </label>
             <label className={styles.label}>
               Votre mots de passe que vous utiliser est : {password}.

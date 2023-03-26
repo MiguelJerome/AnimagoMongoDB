@@ -6,7 +6,7 @@ import ProduitImagePanier from './ProduitImagePanier';
 export function Produitsdisponibles({ produits }) {
   return (
     <>
-      <h3 className={styles.subTitle}>Produits disponibles à l'achat :</h3>
+      <h3 className={styles.subTitle}>Produits disponibles à l&apos;achat :</h3>
       <ul>
         {produits.map(
           ({ _id, src, alt, averageWidth, averageHeight, name, price }) => (

@@ -22,7 +22,7 @@ export default function Contact() {
               </ul>
             </div>
             <div className={styles.divGrid}>
-              <p className={styles.horaire}>Horaires d'ouvertures</p>
+              <p className={styles.horaire}>Horaires d&apos;ouvertures</p>
               <ul className={styles.ul}>
                 <li>Lun - Ven : 7h00 - 22h00 </li>
                 <li>Samedi : 8h - 22h</li>
@@ -40,7 +40,7 @@ export default function Contact() {
               </ul>
             </div>
             <div className={styles.divGrid}>
-              <p className={styles.horaire}>Horaires d'ouvertures</p>
+              <p className={styles.horaire}>Horaires d&apos;ouvertures</p>
               <ul className={styles.ul}>
                 <li>Lun - Ven : 7h00 - 22h00 </li>
                 <li>Samedi : 8h - 22h</li>
@@ -58,7 +58,7 @@ export default function Contact() {
               </ul>
             </div>
             <div className={styles.divGrid}>
-              <p className={styles.horaire}>Horaires d'ouvertures</p>
+              <p className={styles.horaire}>Horaires d&apos;ouvertures</p>
               <ul>
                 <li>Lun - Ven : 7h00 - 22h00 </li>
                 <li>Samedi : 8h - 22h</li>

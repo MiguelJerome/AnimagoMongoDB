@@ -130,7 +130,7 @@ export default function Connexion({ users }) {
                 className={styles.button}
                 onClick={() => router.push('/Accueil')}
               >
-                ← Aller à l'accueil
+                ← Aller à l&apos;accueil
               </button>
             </div>
             <div className={styles.promptWrapper}>
@@ -141,7 +141,7 @@ export default function Connexion({ users }) {
                 className={styles.button}
                 onClick={() => router.push('/InscriptionConnexion/Inscription')}
               >
-                ← Aller à l'inscription
+                ← Aller à l&apos;inscription
               </button>
             </div>
             <form
@@ -177,15 +177,15 @@ export default function Connexion({ users }) {
                 className={styles.button}
                 onClick={() => router.push('/Accueil')}
               >
-                ← Aller à l'accueil
+                ← Aller à l&apos;accueil
               </button>
             </div>
             <div className={styles.title}>
               <h2>Déconnexion?</h2>
               <label className={styles.label}>
                 {`Bonjour ${firstName} ${lastName},`}
-                Vous êtes déjà connecté avec l'adresse e-mail : {email}.
-                Souhaitez-vous vous déconnecter ou retourner à l'accueil ?
+                Vous êtes déjà connecté avec l&apos;adresse e-mail : {email}.
+                Souhaitez-vous vous déconnecter ou retourner à l&apos;accueil ?
               </label>
             </div>
             <div className={styles.promptWrapper}>

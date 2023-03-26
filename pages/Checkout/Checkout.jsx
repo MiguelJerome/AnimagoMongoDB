@@ -9,7 +9,9 @@ export default function Checkout() {
       <main>
         <div className={styles.container}>
           <h1 className={styles.h1}>Checkout work!</h1>
-          <h1 className={styles.h1}>Merci d'avoir magasiner chez Animago!</h1>
+          <h1 className={styles.h1}>
+            Merci d &apos avoir magasiner chez Animago!
+          </h1>
           <h1
             className={styles.emoji}
             role="img"

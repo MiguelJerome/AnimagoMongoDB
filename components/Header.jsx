@@ -58,7 +58,9 @@ export default function Header() {
     <>
       <header>
         <div className={styles.headerLivraison}>
-          <p className={styles.p}>LIVRAISON GRATUITE - COMMANDEZ AUJOURD'HUI</p>
+          <p className={styles.p}>
+            LIVRAISON GRATUITE - COMMANDEZ AUJOURD&apos;HUI
+          </p>
         </div>
         <div className={`${styles.divRow}`}>
           <p

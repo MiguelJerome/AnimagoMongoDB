@@ -9,7 +9,7 @@ export default function PanierVideMessage({ time }) {
         <span className={styles.shocked} role="img" aria-label="shocked">
           😱
         </span>
-        <p>Vous n'avez encore rien ajouté à votre panier!</p>
+        <p>Vous n&apos;avez encore rien ajouté à votre panier!</p>
         <p>Votre panier est vide.</p>
         <PanierMessageLoadingCommande time={time} />
       </h3>

@@ -10,7 +10,7 @@ import {
   submitCheckout,
 } from '/components/AchatPanier/PanierLogic/PanierLogic';
 import {
-  handleOrder,
+  useHandleOrder,
   handleChange,
 } from '/components/AchatPanier/PanierLogic/PanierOrderLogic';
 
@@ -34,7 +34,7 @@ export default function PanierPanneau({
     calcTotal(cart, setTotalPriceInCart, setTotalItemPurchase);
   }, [cart]);
 
-  handleOrder(orders, setCart, setOrders, totalPriceInCart, router);
+  useHandleOrder(orders, setCart, setOrders, totalPriceInCart, router);
 
   const handleCartChange = (item, value) => {
     handleChange(item, value, cart, setCart, getPurchaseQuantity);

@@ -22,9 +22,9 @@ export default function Histoire() {
               peu disponible.
             </p>
             <p>
-              L'équipe AnimaGo! est ravi de montrer leur vision de l'un des
-              meilleurs futurs sites Web d'animaliers sur le marché, qui sera
-              bientot présenté au monde.
+              L&apos;équipe AnimaGo! est ravi de montrer leur vision de
+              l&apos;un des meilleurs futurs sites Web d&apos;animaliers sur le
+              marché, qui sera bientot présenté au monde.
             </p>
           </div>
           <Image
