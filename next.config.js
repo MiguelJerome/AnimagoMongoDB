@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-export default {
+const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
   node: {
@@ -46,3 +46,5 @@ export default {
     return config;
   },
 };
+
+export default nextConfig;
