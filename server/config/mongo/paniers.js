@@ -37,3 +37,16 @@ export async function savePanier(panier) {
     return { error: 'Failed to save panier!' };
   }
 }
+
+export async function updateProductStock(itemId, newStock) {
+  try {
+    if (!paniers) await init();
+    const result = await paniers.updateOne(
+      { _id: itemId },
+      { $set: { stock: newStock } }
+    );
+    return { success: true, result };
+  } catch (error) {
+    return { error: 'Failed to update product stock!' };
+  }
+}
