@@ -1,4 +1,4 @@
-import { Inter } from '@next/font/google';
+import { Inter } from "next/font/google";
 import styles from '/styles/NotFound.module.css';
 import { useRouter } from 'next/router';
 

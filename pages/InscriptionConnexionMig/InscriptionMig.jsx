@@ -1,4 +1,4 @@
-import { Inter } from '@next/font/google';
+import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ['latin'] });
 import styles from '/styles/Inscription.module.css';
 import ConfirmPassword from '/components/Inscription/ConfirmPassword';
@@ -217,110 +217,108 @@ export default function Inscription({ users }) {
     event.preventDefault();
   };
 
-  return (
-    <>
-      <main>
-        <div className={styles.container}>
-          {!isLoggedin ? (
-            <>
-              <div className={styles.promptWrapper}>
-                <button
-                  className={styles.button}
-                  onClick={() => router.push('/Accueil')}
-                >
-                  ← Aller à l&apos;accueil
-                </button>
-              </div>
-              <div className={styles.promptWrapper}>
-                <div className={styles.question}>
-                  <h2>Déjà membre?</h2>
-                </div>
-                <button
-                  className={styles.button}
-                  onClick={() => router.push('/InscriptionConnexion/Connexion')}
-                >
-                  ← Aller à Connexionn
-                </button>
-              </div>
-              <form
-                className={styles.formAuthentificationWrapper}
-                onReset={handleFormReset}
+  return <>
+    <main>
+      <div className={styles.container}>
+        {!isLoggedin ? (
+          <>
+            <div className={styles.promptWrapper}>
+              <button
+                className={styles.button}
+                onClick={() => router.push('/Accueil')}
               >
-                <div className={styles.title}>
-                  <h2>Inscription</h2>
-                </div>
-                <Prenom
-                  firstName={firstName}
-                  handleChange={(e) => setFirstName(e.target.value)}
-                  errorMessage="Votre prénom doit contenir au moins 2 caractères"
-                  regex={/^[a-zA-Z\s]{2,}$/}
-                />
-                <Nom
-                  lastName={lastName}
-                  handleChange={(e) => setLastName(e.target.value)}
-                  errorMessage="Votre nom doit contenir au moins 2 caractères"
-                  regex={/^[a-zA-Z\s]{2,}$/}
-                />
-                <Email
-                  email={email}
-                  handleChange={(e) => setEmail(e.target.value)}
-                  errorMessage="S'il vous plaît, mettez une adresse email valide"
-                  regex="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-                />
-                <Password
-                  password={password}
-                  handleChange={handleChange}
-                  regex="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
-                />
-                <ConfirmPassword
-                  confirmPassword={confirmPassword}
-                  handleChange={(e) => setConfirmPassword(e.target.value)}
-                  regex="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
-                />
-                <BoutonReset handleFormReset={handleFormReset} />
-                <BoutonInscription
-                  handleFormSubmit={handleFormSubmit}
-                  disabled={false}
-                />
-                {errorMessage && (
-                  <div className={styles.errorText}>{errorMessage}</div>
-                )}
-              </form>
-            </>
-          ) : (
-            <>
-              <div className={styles.promptWrapper}>
-                <button
-                  className={styles.button}
-                  onClick={() => router.push('/Accueil')}
-                >
-                  ← Aller à l&apos;accueil
-                </button>
+                ← Aller à l&apos;accueil
+              </button>
+            </div>
+            <div className={styles.promptWrapper}>
+              <div className={styles.question}>
+                <h2>Déjà membre?</h2>
               </div>
+              <button
+                className={styles.button}
+                onClick={() => router.push('/InscriptionConnexion/Connexion')}
+              >
+                ← Aller à Connexionn
+              </button>
+            </div>
+            <form
+              className={styles.formAuthentificationWrapper}
+              onReset={handleFormReset}
+            >
               <div className={styles.title}>
-                <h2>Déconnexion?</h2>
-                <label className={styles.label}>
-                  Oups! On dirais que vous êtes déjà connecté(e),
-                  {` ${firstName} 
-                  ${lastName} (${email})`}
-                  . Voulez-vous vous déconnecter ou retourner à l&apos;accueil?
-                </label>
+                <h2>Inscription</h2>
               </div>
-              <div className={styles.promptWrapper}>
-                <button
-                  className={styles.button}
-                  onClick={() => router.push('/Accueil')}
-                  onClickCapture={logout}
-                >
-                  Déconnexion
-                </button>
-              </div>
-            </>
-          )}
-        </div>
-      </main>
-    </>
-  );
+              <Prenom
+                firstName={firstName}
+                handleChange={(e) => setFirstName(e.target.value)}
+                errorMessage="Votre prénom doit contenir au moins 2 caractères"
+                regex={/^[a-zA-Z\s]{2,}$/}
+              />
+              <Nom
+                lastName={lastName}
+                handleChange={(e) => setLastName(e.target.value)}
+                errorMessage="Votre nom doit contenir au moins 2 caractères"
+                regex={/^[a-zA-Z\s]{2,}$/}
+              />
+              <Email
+                email={email}
+                handleChange={(e) => setEmail(e.target.value)}
+                errorMessage="S'il vous plaît, mettez une adresse email valide"
+                regex="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              />
+              <Password
+                password={password}
+                handleChange={handleChange}
+                regex="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              />
+              <ConfirmPassword
+                confirmPassword={confirmPassword}
+                handleChange={(e) => setConfirmPassword(e.target.value)}
+                regex="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              />
+              <BoutonReset handleFormReset={handleFormReset} />
+              <BoutonInscription
+                handleFormSubmit={handleFormSubmit}
+                disabled={false}
+              />
+              {errorMessage && (
+                <div className={styles.errorText}>{errorMessage}</div>
+              )}
+            </form>
+          </>
+        ) : (
+          <>
+            <div className={styles.promptWrapper}>
+              <button
+                className={styles.button}
+                onClick={() => router.push('/Accueil')}
+              >
+                ← Aller à l&apos;accueil
+              </button>
+            </div>
+            <div className={styles.title}>
+              <h2>Déconnexion?</h2>
+              <label className={styles.label}>
+                Oups! On dirais que vous êtes déjà connecté(e),
+                {` ${firstName} 
+                ${lastName} (${email})`}
+                . Voulez-vous vous déconnecter ou retourner à l&apos;accueil?
+              </label>
+            </div>
+            <div className={styles.promptWrapper}>
+              <button
+                className={styles.button}
+                onClick={() => router.push('/Accueil')}
+                onClickCapture={logout}
+              >
+                Déconnexion
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </main>
+  </>;
 }
 
 export { saveUserServerSideProps as getServerSideProps };
