@@ -28,7 +28,7 @@ export const useHandleOrder = (
         query: { orders: JSON.stringify(orders) },
       });
     }
-  }, [orders]);
+  }, [orders, router, setCart, setOrders, totalPriceInCart]);
 };
 
 export const handleChange = (
