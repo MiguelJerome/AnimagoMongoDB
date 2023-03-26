@@ -46,7 +46,7 @@ export function useAllPanierLogic({
         query: { orders: JSON.stringify(orders) },
       });
     }
-  }, [orders]);
+  }, [orders, router, setCart, setOrders, totalPriceInCart]);
 
   const handleChange = (item, value) => {
     if (Number.isInteger(value)) {

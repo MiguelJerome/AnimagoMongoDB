@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from '/styles/CommandeHistorique/CommandeHistorique.module.css';
 import DimensionsMoyennesImages from '/components/Images/DimensionsMoyennesImages.jsx';
 import UpdateProductStockAndSetCart from '/components/ProduitBindingPanier/UpdateProductStockAndSetCart/UpdateProductStockAndSetCart';
 import { toast } from 'react-toastify';
+
+function calcTotal(orders) {
+  let sum = 0;
+  orders.forEach((itemsArray) => {
+    itemsArray.forEach((item) => {
+      sum += parseFloat(item.price) * parseInt(item.purchaseQuantity);
+    });
+  });
+  return sum.toFixed(2);
+}
 
 export default function CommandeHistorique({
   cart,
@@ -17,7 +27,6 @@ export default function CommandeHistorique({
 
   const [total, setTotal] = useState(0);
   const { produitsState } = UpdateProductStockAndSetCart({ orders });
-  //console.log('Orders in string passing from the current cart', orders);
   let userInfo;
   if (typeof window !== 'undefined') {
     userInfo = localStorage.getItem('token-info');
@@ -25,7 +34,7 @@ export default function CommandeHistorique({
   const { orderString, setOrderString } = userInfo ? JSON.parse(userInfo) : {};
 
   useEffect(() => {
-    calcTotal();
+    setTotal(calcTotal(orders));
   }, [cart, orders]);
 
   const calculateTotal = () => {
@@ -38,21 +47,12 @@ export default function CommandeHistorique({
     return sum;
   };
 
-  const calcTotal = () => {
-    let sum = 0;
-    orders.forEach((itemsArray) => {
-      itemsArray.forEach((item) => {
-        sum += parseFloat(item.price) * parseInt(item.purchaseQuantity);
-      });
-    });
-    setTotal(sum.toFixed(2));
-  };
   const [showNoOrdersMessage, setShowNoOrdersMessage] = useState(false);
-  let noOrdersFound = false;
+  const noOrdersFound = useRef(false);
 
   useEffect(() => {
-    if (orders.length === 0 && !noOrdersFound) {
-      noOrdersFound = true;
+    if (orders.length === 0 && !noOrdersFound.current) {
+      noOrdersFound.current = true;
       setShowNoOrdersMessage(true);
       toast.info('Aucune commande pour cette date.', {
         hideProgressBar: true,
