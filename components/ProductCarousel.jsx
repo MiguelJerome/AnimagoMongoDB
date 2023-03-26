@@ -4,7 +4,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from '/styles/Carousel.module.css';
-import products from './products';
+import products from '/components/Products';
 
 const ProductCarousel = () => {
   const router = useRouter();
