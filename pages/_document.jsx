@@ -5,7 +5,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>Animago - Accueil</title>
           <meta
             name="description"
             content="Une page d'accueil de site web, avec une image de Animago propriétaire du e-commerce"
