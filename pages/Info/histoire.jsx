@@ -1,11 +1,8 @@
-import { Inter } from '@next/font/google';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
 import styles from '/styles/Histoire.module.css';
 import ChienHistoire from '/public/img/ChienHistoire.png';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Histoire() {
   return (

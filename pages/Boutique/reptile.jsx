@@ -17,9 +17,11 @@ export default function Reptile({ paniers }) {
     getPurchaseQuantity,
     getRemainingStock,
   ] = useCart(paniers);
+
   useEffect(() => {
     initCart();
-  }, [paniers]);
+  }, [paniers, initCart]);
+
   const [visibleState, setVisible] = useState(false);
   const toggler = () => {
     setVisible(!visibleState);

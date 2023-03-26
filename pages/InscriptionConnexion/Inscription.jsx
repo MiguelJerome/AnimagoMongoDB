@@ -70,7 +70,7 @@ export default function Inscription({ users }) {
 
   useEffect(() => {
     checkFormValidity();
-  }, [firstName, lastName, email, password, confirmPassword]);
+  });
 
   // const { formData, errorMessage, handleChange, handleSubmit } =
   //   useConnectionForm();

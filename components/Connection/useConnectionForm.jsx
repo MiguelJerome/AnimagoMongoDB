@@ -24,7 +24,7 @@ const useInscriptionForm = () => {
 
   useEffect(() => {
     checkFormValidity();
-  }, [firstName, lastName, email, password, confirmPassword]);
+  });
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
