@@ -26,15 +26,6 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <ToastContainer />
-      <Head>
-        <link rel="preload" href={ImagePrincipal} as="image" />
-        <link rel="preload" href={facebook} as="image" />
-        <link rel="preload" href={instagram} as="image" />
-        <link rel="preload" href={youtube} as="image" />
-        <link rel="preload" href={search} as="image" />
-        <link rel="preload" href={Login} as="image" />
-        <link rel="preload" href={Cart} as="image" />
-      </Head>
       <Layout>
         <Component {...pageProps} />
       </Layout>
