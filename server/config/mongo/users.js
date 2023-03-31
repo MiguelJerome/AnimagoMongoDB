@@ -15,7 +15,11 @@ async function init() {
 }
 
 (async () => {
-  await init();
+  try {
+    await init();
+  } catch (error) {
+    console.error(error);
+  }
 })();
 
 export async function getUsers() {
