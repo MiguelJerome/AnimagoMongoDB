@@ -22,11 +22,17 @@ export async function saveUserServerSideProps() {
   if (!updatedUsers) throw new Error('Failed to fetch users');
 
   // Convert the _id property of each user to a string
-  const usersStringified = updatedUsers.map((user) => ({
-    ...user,
-    _id: user._id.toString(),
-    commandes: JSON.parse(JSON.stringify(user.commandes)),
-  }));
+  const usersStringified = updatedUsers.map((user) => {
+    const commandes = user.commandes
+      ? JSON.parse(JSON.stringify(user.commandes))
+      : undefined;
+
+    return {
+      ...user,
+      _id: user._id.toString(),
+      commandes,
+    };
+  });
 
   return {
     props: {
