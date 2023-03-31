@@ -1,5 +1,4 @@
 import { getUsers, saveUser } from '/server/config/mongo/users';
-import { createUser } from 'components/Inscription/createUser';
 
 export async function saveUserServerSideProps() {
   // Get the list of users
@@ -25,7 +24,7 @@ export async function saveUserServerSideProps() {
   const usersStringified = updatedUsers.map((user) => {
     const commandes = user.commandes
       ? JSON.parse(JSON.stringify(user.commandes))
-      : undefined;
+      : null;
 
     return {
       ...user,
