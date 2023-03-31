@@ -4,11 +4,8 @@ import Layout from '../components/Layout';
 import 'normalize.css/normalize.css';
 import '@/styles/globals.css';
 import Head from 'next/head';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
-import { jsx as _jsx } from 'react/jsx-runtime';
-import { jsxs as _jsxs } from 'react/jsx-runtime';
-
+//import 'react-toastify/dist/ReactToastify.css';
+//import { ToastContainer } from 'react-toastify';
 import ImagePrincipal from '../public/img/image_accueil.png';
 import facebook from '../public/img/facebook.svg';
 import instagram from '../public/img/instagram.svg';
@@ -28,10 +25,6 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <div>
-        <ToastContainer />
-      </div>
-
       <Layout>
         <Component {...pageProps} />
       </Layout>
