@@ -5,9 +5,11 @@ export async function getUsersServerSideProps() {
   if (!users) throw new Error('Failed to fetch users');
   // Convert the _id property of each user to a string
   const usersStringified = users.map((user) => {
-    const commandes = user.commandes
-      ? JSON.parse(JSON.stringify(user.commandes))
-      : undefined;
+    let commandes;
+    if (user.commandes) {
+      commandes = JSON.parse(JSON.stringify(user.commandes));
+    }
+
     return {
       ...user,
       _id: user._id.toString(),
