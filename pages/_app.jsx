@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import RedirectToAccueil from '../components/RedirectToAccueil';
 import Layout from '../components/Layout';
 import 'normalize.css/normalize.css';
 import '@/styles/globals.css';
@@ -17,15 +18,10 @@ import Cart from '../public/img/cart.png';
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
-  useEffect(() => {
-    if (router.pathname === '/') {
-      router.push('/Accueil');
-    }
-  }, [router]);
-
   return (
     <>
       <Layout>
+        <RedirectToAccueil />
         <ToastContainer />
         <Component {...pageProps} />
       </Layout>
