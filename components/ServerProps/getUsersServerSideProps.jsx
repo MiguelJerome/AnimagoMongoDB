@@ -8,6 +8,8 @@ export async function getUsersServerSideProps() {
     let commandes;
     if (user.commandes) {
       commandes = JSON.parse(JSON.stringify(user.commandes));
+    } else {
+      commandes = null;
     }
 
     return {
