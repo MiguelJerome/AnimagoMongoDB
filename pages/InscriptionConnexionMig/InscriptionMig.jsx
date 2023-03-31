@@ -39,8 +39,9 @@ const handler = async (req, res) => {
   res.status(405).end(`Method ${req.method} is not allowed.`);
 };
 
-export default function Inscription({ users }) {
-  const [usersServerSide, setusersServerSide] = useState(users || []);
+export default function Inscription({ users = [] }) {
+  const [usersServerSide, setusersServerSide] = useState(users);
+
   const [errorMessage, setErrorMessage] = useState('');
 
   const router = useRouter();
@@ -321,4 +322,6 @@ export default function Inscription({ users }) {
   );
 }
 
-export { saveUserServerSideProps as getServerSideProps };
+export async function getServerSideProps() {
+  return await saveUserServerSideProps();
+}

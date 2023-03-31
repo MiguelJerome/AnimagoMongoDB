@@ -36,7 +36,7 @@ export async function saveUserServerSideProps() {
   return {
     props: {
       successMessage: success || null,
-      errorMessage: error,
+      errorMessage: error || null,
       users: usersStringified,
     },
   };
