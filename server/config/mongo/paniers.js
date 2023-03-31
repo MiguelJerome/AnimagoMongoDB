@@ -1,4 +1,5 @@
 import clientPromise from '.';
+
 let client;
 let db;
 let paniers;
@@ -9,13 +10,19 @@ async function init() {
     client = await clientPromise;
     db = await client.db();
     paniers = await db.collection('paniers');
+    console.log('Database connection established successfully');
   } catch (error) {
-    throw new Error('failed to stablish connection to database');
+    console.error(error);
+    throw new Error('Failed to establish connection to database');
   }
 }
 
 (async () => {
-  await init();
+  try {
+    await init();
+  } catch (error) {
+    console.error(error);
+  }
 })();
 
 export async function getPaniers() {
@@ -24,6 +31,7 @@ export async function getPaniers() {
     const result = await paniers.find({}).limit(20).toArray();
     return { paniers: result };
   } catch (error) {
+    console.error(error);
     return { error: 'Failed to fetch paniers!' };
   }
 }
@@ -34,6 +42,7 @@ export async function savePanier(panier) {
     const result = await paniers.insertOne(panier);
     return { success: true, panier: result.ops[0] };
   } catch (error) {
+    console.error(error);
     return { error: 'Failed to save panier!' };
   }
 }
@@ -47,6 +56,7 @@ export async function updateProductStock(itemId, newStock) {
     );
     return { success: true, result };
   } catch (error) {
+    console.error(error);
     return { error: 'Failed to update product stock!' };
   }
 }
