@@ -5,6 +5,7 @@ export async function saveUserServerSideProps() {
   const { users } = await getUsers();
   if (!users) throw new Error('Failed to fetch users');
 
+  /*
   // Save a new user
   const newUser = {
     email: 'johndoe@example.com',
@@ -14,7 +15,8 @@ export async function saveUserServerSideProps() {
     commandes: [],
     __v: 0,
   };
-  const { success, error } = await saveUser(newUser);
+  */
+  const { success, error } = await saveUser(users);
 
   // Get the updated list of users
   const { users: updatedUsers } = await getUsers();
