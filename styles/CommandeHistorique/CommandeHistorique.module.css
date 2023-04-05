@@ -7,7 +7,7 @@
   align-content: stretch;
   flex-direction: row;
   height: auto;
-  width: 1000px;
+  width: 100%;
 }
 
 .gallerie img {
@@ -38,7 +38,7 @@
   justify-content: end;
   grid-gap: 1rem;
   gap: 1rem;
-  margin: 5rem 10rem;
+  margin: auto;
   align-content: center;
   align-items: center;
   justify-items: center;
@@ -322,4 +322,10 @@
   margin: auto;
   width: 5rem;
   height: 5rem;
+}
+
+@media (max-width: 550px) {
+  .gallerie{
+    width: max-content;
+  }
 }

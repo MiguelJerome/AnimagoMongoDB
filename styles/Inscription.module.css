@@ -16,7 +16,7 @@
   align-items: center;
   margin: 0.2rem 0;
   font-size: 3rem;
-  color: rgb(254, 59, 0);
+  color: rgb(252, 126, 0);
 }
 .errorText {
   color: red;
@@ -55,7 +55,7 @@
   padding: 1.2rem 2rem;
   font-size: 1.7rem;
   font-weight: bold;
-  background-color: #ff3b00;
+  background-color: rgb(252, 126, 0);
   animation: buttons1 6s forwards, buttons2 4s infinite;
   justify-content: center;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12),
@@ -70,7 +70,7 @@
 }
 
 .button {
-  background-color: rgb(254, 59, 0);
+  background-color: rgb(252, 126, 0);
   color: black;
   cursor: pointer;
   border: none;
@@ -95,9 +95,9 @@
   border-color: springgreen;
   padding: 5px;
   font-size: 1.5em;
-  color: rgb(254, 59, 0);
+  color: rgb(252, 126, 0);
   background-color: #fff0cd82;
-  border: 0.5rem solid rgb(254, 59, 0);
+  border: 0.5rem solid rgb(252, 126, 0);
 }
 
 .label {
@@ -115,7 +115,7 @@
   margin: 1rem 0;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 550px) {
   .question {
     font-size: 1rem;
     margin: auto;

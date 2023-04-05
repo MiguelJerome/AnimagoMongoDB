@@ -11,5 +11,15 @@
   align-items: center;
   margin: 2rem 0;
   font-size: 3rem;
-  color: rgb(254, 59, 0);
+  color: rgb(252, 126, 0);
+}
+
+@media (max-width: 550px) {
+  .container{
+    justify-content: left;
+  }
+  .h1{
+    align-items: baseline;
+    margin-left: 5rem;
+  }
 }

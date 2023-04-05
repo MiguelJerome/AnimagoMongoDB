@@ -14,10 +14,10 @@
   flex-wrap: wrap;
   z-index: -1;
 }
-@media (max-width: 700px) {
+@media (max-width: 550px) {
   .imgPrincipale {
-    width: 100%;
+    width: 100vh;
     object-fit: cover;
-    object-position: -16rem 0;
+    object-position: 0 0;
   }
 }

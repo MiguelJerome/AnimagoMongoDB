@@ -209,30 +209,59 @@
 .welcomeText {
   color: black;
   font-weight: 800;
+  margin: 0.3rem 1rem;
 }
 
 @media (max-width: 550px) {
   .loginCart {
-    width: 25px;
-    min-width: 25px;
+    width: 50px;
+    min-width: 50px;
     margin: 0;
   }
   .searchBar {
     width: 70%;
   }
   .searchForm {
-    width: 150px;
+    width: 280px;
+    height: 2rem;
   }
   .nomAnimago {
-    font-size: 20px;
+    font-size: 35px;
     margin: auto;
   }
-  .iconReseaux {
-    width: 25px;
-    min-width: 25px;
+  .catchPhrase{
+    font-size: 20px;
   }
-
+  .iconReseaux {
+    width: 35px;
+    min-width: 35px;
+  }
+  .aLogin{
+    font-size: 1.5rem;
+  }
   .cacher {
     display: none;
+  }
+  .headerLivraison{
+    width: 100vh;
+  }
+}
+
+
+@media (max-width: 1390px) {
+  .menuProductList{
+      justify-content: center;
+  }
+  .aLogin{
+    margin: 1rem;
+  }
+  .loginCart{
+    margin: 0;
+  }
+  .header2{
+    flex-direction: column;
+  }
+  .welcomeText{
+    font-size: 20px;
   }
 }

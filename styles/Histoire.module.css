@@ -1,6 +1,6 @@
 .titreHistoire {
   font-size: 35px;
-  color: rgb(254, 59, 0);
+  color: rgb(252, 126, 0);
   font-weight: bold;
   align-items: flex-start;
   margin-bottom: 1rem;
@@ -31,9 +31,12 @@
   min-width: 30rem;
   margin: auto;
 }
-@media (max-width: 900px) {
+@media (max-width: 550px) {
   .titreHistoire {
     font-size: 2rem;
     margin: 1rem;
+  }
+  .histoire{
+    font-size: 1.4rem;
   }
 }

@@ -73,11 +73,7 @@ export default function ProduitItemBtnAjouterPanier({
 
   return (
     <button className={styles.button} onClick={handleClick}>
-      Ajouter{' '}
-      <div className={styles.panierItemQuantite}>
-        {quantite > 0 ? `${quantite}` : '0'}
-      </div>{' '}
-      au Panier
+      Ajouter au Panier
     </button>
   );
 }

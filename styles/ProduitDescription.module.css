@@ -27,7 +27,7 @@
 }
 
 .button {
-  background-color: rgb(254, 59, 0);
+  background-color: rgb(252, 126, 0);
   color: black;
   cursor: pointer;
   border: none;
@@ -51,7 +51,7 @@
   align-items: center;
   margin-top: 2.5rem;
   font-size: 3rem;
-  color: rgb(254, 59, 0);
+  color: rgb(252, 126, 0);
 }
 
 .containerCartButton {
@@ -88,7 +88,7 @@
 .alignc {
   align-items: center;
 }
-@media (max-width: 900px) {
+@media (max-width: 550px) {
   .containerDetail {
     flex-direction: column;
   }

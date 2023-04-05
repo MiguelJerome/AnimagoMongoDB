@@ -1,7 +1,10 @@
 .sliderimg {
   margin: 0 1.01rem;
-  padding-right: 1rem;
+  padding-right: 0.3rem;
   width: 150px;
+  min-width: 150px;
   height: 150px;
   object-fit: cover;
+  cursor: pointer;
 }
+

@@ -26,7 +26,14 @@ export default function Expedition() {
                 l&apos;expédition de votre commande, nous vous contacterons par
                 e-mail ou par téléphone.
               </p>
-
+              <div className={styles.photoExpedition}>
+                <Image
+                  src={politique}
+                  alt={'Une livraison' || 'Default Image'}
+                  className={styles.imgResize}
+                  priority={true}
+                />
+              </div>
               <h3 className={styles.soustitreExpedition}>
                 Politique de retour et d&apos;échange
               </h3>
@@ -37,27 +44,16 @@ export default function Expedition() {
                 nécessairement apporter de justification. Le site marchand ne
                 peut le refuser.
               </p>
+              <div className={styles.photoExpedition}>
+                <Image
+                  src={retour}
+                  alt={'Un retour' || 'Default Image'}
+                  className={styles.imgResize}
+                  priority={true}
+                />
+              </div>
             </div>
           </main>
-        </div>
-
-        <div>
-          <div className={styles.photoExpedition}>
-            <Image
-              src={politique}
-              alt={'Une livraison' || 'Default Image'}
-              className={styles.imgResize}
-              priority={true}
-            />
-          </div>
-          <div className={styles.photoExpedition}>
-            <Image
-              src={retour}
-              alt={'Un retour' || 'Default Image'}
-              className={styles.imgResize}
-              priority={true}
-            />
-          </div>
         </div>
       </div>
 

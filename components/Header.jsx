@@ -179,9 +179,6 @@ export default function Header() {
                       {`${firstName}
                       ${lastName}!`}
                     </p>
-                    <a className={styles.aLogin} onClick={logout}>
-                      Deconnexion
-                    </a>
                   </div>
                 </>
               )}
@@ -196,6 +193,7 @@ export default function Header() {
                   onClick={toggler}
                 />
               </a>
+              {isLoggedin &&
               <div>
                 <a
                   className={styles.aLogin}
@@ -205,7 +203,12 @@ export default function Header() {
                 >
                   Commande Historique{' '}
                 </a>
+                
+                <a className={styles.aLogin} onClick={logout}>
+                      Deconnexion
+                    </a>
               </div>
+              }
               {visibleState && <PanierPanneau toggler={toggler} />}
             </div>
           </div>

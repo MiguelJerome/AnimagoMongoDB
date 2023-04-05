@@ -8,7 +8,7 @@
 
 .titrePolitique {
   font-size: 35px;
-  color: rgb(254, 59, 0);
+  color: rgb(252, 126, 0);
   font-weight: bold;
   align-items: flex-start;
   padding-top: 2rem;
@@ -28,12 +28,18 @@
   margin-top: 1rem;
   margin-bottom: 8rem;
 }
-@media (max-width: 700px) {
+@media (max-width: 550px) {
   .titrePolitique {
-    font-size: 2rem;
+    font-size: 2.3rem;
   }
   .bodyPolitique {
     margin: auto;
     margin-left: 1rem;
+  }
+  .soustitrePolitique{
+    font-size: 1.9rem;
+  }
+  .contenuPolitique{
+    font-size: 1.3rem;
   }
 }

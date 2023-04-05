@@ -52,7 +52,8 @@
   line-height: 1.5;
   min-height: 100%;
   width: 320px;
-  overflow: auto;
+  z-index: 2;
+  overflow: visible;
   transform: translateX(0%);
   transition: transform 0.5s ease-in-out;
 }
@@ -85,7 +86,7 @@
   padding-left: 0;
   padding-right: 0;
   background: #000000;
-  color: #fe3b00;
+  color: rgb(252, 126, 0);
   cursor: default;
 }
 
@@ -93,7 +94,7 @@
   display: flex;
   font-size: 2.7rem;
   margin: auto;
-  color: #fe3b00;
+  color: rgb(252, 126, 0);
   align-items: center;
   justify-content: center;
 }
@@ -101,7 +102,7 @@
 .bouton {
   border: none;
   background-color: transparent;
-  color: #fe3b00;
+  color: rgb(252, 126, 0);
   font-size: 1rem;
   font-weight: bold;
   padding-top: 0.5rem;
@@ -137,7 +138,7 @@
 }
 
 .boutonVoirCommande {
-  background-color: rgb(254, 59, 0);
+  background-color: rgb(252, 126, 0);
   color: black;
   cursor: pointer;
   border: none;
@@ -182,7 +183,7 @@
   height: auto;
   padding: 0;
   margin: auto;
-  color: rgb(254, 59, 0);
+  color: rgb(252, 126, 0);
   position: fixed;
   font-size: 2rem;
   cursor: pointer;
@@ -197,7 +198,8 @@
 
 .containerLayout {
   display: flex;
-  max-height: 50rem;
+  max-height: 90vh;
+  height: 90vh;
   overflow-y: scroll;
   padding: 10px;
   margin-bottom: 15px;
@@ -319,4 +321,22 @@
 
 .hide {
   display: none;
+}
+
+@media (max-width: 550px) {
+  .cart{
+    font-size: 2rem;
+  }
+  .footer{
+    font-size: 2rem;
+  }
+  .checkoutLabel{
+    font-size: 1.5rem;
+  }
+  .boutonCheckout{
+    margin: 0;
+  }
+  .boutonVoirCommande{
+    font-size: 1.3rem;
+  }
 }
